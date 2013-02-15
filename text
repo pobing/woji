@@ -1,0 +1,10 @@
+UI:http://bootswatch.com/cosmo
+
+Post=> posts:
+
+id integer,
+title string,
+item_type integer,
+content text
+
+

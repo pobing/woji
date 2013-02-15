@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Woji</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class="pull-right">
+            <a title="Follow" target="_top" id="btn_follow_join" href="#"> Follow
+            </a>
+            <a title="Join Tumblr" target="_blank" id="btn_join" href="#">
+                Login
+            </a>
+            <a title="Join Tumblr" target="_blank" id="btn_join" href="#">
+                New
+            </a>
+</div>
+
+<div class="container">
+	<!-- header -->
+<%= render 'layouts/header' %>
+<!-- main -->
+<%= yield %>
+<!-- footer -->
+<%= render 'layouts/footer' %>
+</div>
+
+</body>
+</html>
