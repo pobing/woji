@@ -20,16 +20,14 @@
   <div>
     <%= f.label :item_type %><br />
     <div class="controls">
-              <%= f.text_field :item_type %>
-              <p class="help-block">Length 10 </p>
+      riji: <%=f.radio_button :item_type ,0 %> 
+      yueji: <%=f.radio_button :item_type ,1 %>
     </div>
   </div>
-
-
   <div>
     <%= f.label :content %><br />
     <div >
-          <%= f.text_area :content ,:cols=>"1000", :rows => "20" %>
+          <%= f.text_area :content ,:cols=>"5", :rows => "5" %>
     </div>
   </div>
   <div >

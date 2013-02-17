@@ -1,0 +1,5 @@
+<p><h3><%= @post.title %></h3></p>
+<strong><%=@post.type %></strong>
+<p><%=@post.content%></p>
+<%= link_to 'Destroy', @post, confirm: 'Are you sure?', method: :delete %>
+<%= link_to 'Back', posts_path %>

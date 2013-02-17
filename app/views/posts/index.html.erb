@@ -1,3 +1,7 @@
+<%= link_to 'Add New ', new_post_path %>
 <% @post.each do |post|  %>
-<p><%=post.title%></p>
+<p><h3><%= link_to post.title,post %></h3></p>
+<strong><%=post.type %></strong>
+<p><%=post.content%></p>
+<%= link_to 'Destroy', post, confirm: 'Are you sure?', method: :delete %>
 <%end%>
