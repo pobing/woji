@@ -11,27 +11,33 @@
   <% end %>
   <fieldset>
   <div>
-    <%= f.label :title %><br />
-    <div class="controls">
-      <%= f.text_field :title %>
-    </div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
   </div>
  
   <div>
-    <%= f.label :item_type %><br />
-    <div class="controls">
-      riji: <%=f.radio_button :item_type ,0 %> 
-      yueji: <%=f.radio_button :item_type ,1 %>
+    <%= f.label :item_type %>
+    <div>
+      日记: <%=f.radio_button :item_type ,1 %> 
+      周记: <%=f.radio_button :item_type ,2 %>
+      月记: <%=f.radio_button :item_type ,3 %>
+      年记: <%=f.radio_button :item_type ,4 %>
+      自传: <%=f.radio_button :item_type ,5 %>
     </div>
   </div>
   <div>
-    <%= f.label :content %><br />
+    <%= f.label :content %>
     <div >
-          <%= f.text_area :content ,:cols=>"5", :rows => "5" %>
+      <%= f.text_area :content ,:cols=>"5", :rows => "5" %>
     </div>
   </div>
   <div >
-    <%= f.submit "Create" %>
+  <div>
+    Tag:</br> 
+    <input type="text" name="tags"/>*多个标签以","隔开 
   </div>
+    <%= f.submit "Create" ,:class=>"btn btn-primary"%>
+  </div>
+  
    </fieldset>
 <% end %>

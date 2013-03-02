@@ -1,0 +1,21 @@
+<div id="sidebar">
+    <h3>站内搜索</h3>
+        <%= form_tag("/search", :method => "get") do %>
+        <%= text_field_tag(:q,"",:class=>"input-medium search-query") %>
+        <%= submit_tag("搜索") %>
+    <% end %>
+    <h3>最新记录</h3>
+    <% recently_posts.each do |r| %>
+        <%=link_to r.title , r %> </br>
+    <%end%>
+    <h3>Tags</h3>
+    <% get_tags.each do |t| %>
+      <%=link_to t.name, "#" %>
+    <%end%>
+    <h3>文章统计</h3>
+    <div>
+        <p>总共: <%=get_counts[:all_count]%> 篇 </p>
+        <p>说说: <%=get_counts[:tweet_count]%> 条 </p>
+        <p>日记: <%=get_counts[:diary_count]%> 篇 </p>
+    </div>
+</div>

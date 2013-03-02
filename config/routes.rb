@@ -1,8 +1,18 @@
 Woji::Application.routes.draw do
-  resources :hs
 
+
+  # get "sessions/new"
+
+  # get "sessions/create"
+
+  # get "sessions/destroy"
+
+  match 'login' => "sessions#new",:as=>"login"
+  match 'signup'=> "users#sign_up" ,:as=>"signup"
   get "home/index"
+  resources :users
 
+  resources :hs
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -18,7 +28,14 @@ Woji::Application.routes.draw do
   #   resources :products
 
   # Sample resource route with options:
-  resources :posts 
+  resources :posts do
+    # member do
+    #  post 'post_message' 
+    # end
+    collection do
+        post 'post_tweet'
+      end
+  end
   
   #   resources :products do
   #     member do

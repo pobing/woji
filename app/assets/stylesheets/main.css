@@ -1,0 +1,52 @@
+
+body {
+    font-family: Verdana;
+    font-size: 14px;
+    line-height: 150%;
+    margin: 0;
+}
+#container {
+    margin: 0 auto;
+    width: 960px;
+}
+#header {
+    background: none repeat scroll 0 0 ;
+    height: 100px;
+    margin-bottom: 5px;
+}
+#menu {
+    background: none repeat scroll 0 0 ;
+    height: 30px;
+    margin-bottom: 5px;
+}
+#mainContent {
+    background: url("bg.gif") repeat-y scroll right 0 transparent;
+    margin-bottom: 5px;
+    /*overflow: auto;*/
+}
+#sidebar {
+    background: none repeat scroll 0 0 ;
+    float: right;
+    width: 230px;
+}
+#content {
+    background: none repeat scroll 0 0 ;
+    float: left;
+    padding: 10px;
+    width: 705px;
+}
+#footer {
+    background: none repeat scroll 0 0 ;
+    height: 60px;
+}
+.clearfloat {
+    clear: both;
+    font-size: 1px;
+    height: 0;
+    line-height: 0;
+}
+
+.postform{
+    width: 650px;
+    height: 65px;
+}

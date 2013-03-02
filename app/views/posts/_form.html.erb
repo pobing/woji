@@ -1,0 +1,7 @@
+<div>
+	<p><%= link_to '切换到高级发布模式 ', new_post_path %></p>
+   <%= form_tag("/posts/post_tweet", :method => "post") do %>
+   <%= text_area_tag(:message, nil, :placeholder => '现在说点什么？', :class => "postform") %>
+  <div><%= submit_tag("发 布" ,:class=> "btn btn-primary" )%></div>
+  <%end%>
+</div>

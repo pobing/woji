@@ -1,7 +1,7 @@
 class CreateHs < ActiveRecord::Migration
   def change
     create_table :hs do |t|
-      t.String :name
+      t.string :name
 
       t.timestamps
     end
