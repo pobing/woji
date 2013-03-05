@@ -3,8 +3,9 @@ class Post < ActiveRecord::Base
   attr_accessible :content, :item_type, :title,:tags,:tags_attributes
   has_many :tags
   default_scope :order => 'created_at DESC'
-  # accepts_nested_attributes_for :tags, :allow_destroy => :true,
-  #   :reject_if => proc { |attrs| attrs.all? { |k, v| v.blank? } }
+
+  validates :title, :length => { maximum: 50 , message: "标题最长为50个字符" }
+
   module Type
     TWEET = 0
     DAY = 1
