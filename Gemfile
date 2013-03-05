@@ -5,11 +5,15 @@ gem 'rails', '3.2.3'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2'
 gem 'execjs'
 gem 'therubyracer'
+group :development, :test do
+  gem 'mysql2'
+  gem 'rspec-rails', '2.11.0'
+end
+
 group :production do
-  gem 'pg'
+  gem 'pg','0.14.1'
 end
 gem 'thin'
 # Gems used only for assets and not required
@@ -41,8 +45,7 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 group  :test do
-	gem 'rspec-rails','2.8.1'
 	gem "selenium-webdriver",'2.25.0'
 	gem 'factory_girl', '1.3.3'
-    gem 'capybara', '1.1.2'
+  gem 'capybara', '1.1.2'
 end
