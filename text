@@ -4,6 +4,9 @@ commit github:
  git remote add origin git@github.com:pobing/woji.git  
  git push -u origin master  
 
+I18n : http://ihower.tw/rails3/i18n.html
+https://www.localeapp.com/projects/370/translations/204110?in_locale=1585
+https://github.com/pobing/rails-i18n
 
 Post=> posts:
 
