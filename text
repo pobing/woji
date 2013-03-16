@@ -4,9 +4,14 @@ commit github:
 git remote add origin git@github.com:pobing/woji.git  
 git push -u origin master  
 
-gurad : http://about.ac/rails-tutorial-2nd-cn/chapter3.html
+gurad spork: http://about.ac/rails-tutorial-2nd-cn/chapter3.html
 $ bundle exec guard init rspec
-bundle exec guard 
+$ bundle exec guard
+$ bundle exec spork --bootstrap
+$time bundle exec rspec spec/requests/static_pages_spec.rb
+I18n : http://ihower.tw/rails3/i18n.html
+https://www.localeapp.com/projects/370/translations/204110?in_locale=1585
+https://github.com/pobing/rails-i18n
 
 Post=> posts:
 

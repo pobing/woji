@@ -20,7 +20,7 @@ body {
     margin-bottom: 5px;
 }
 #mainContent {
-    background: url("bg.gif") repeat-y scroll right 0 transparent;
+    /*background: url("bg.gif") repeat-y scroll right 0 transparent;*/
     margin-bottom: 5px;
     /*overflow: auto;*/
 }
