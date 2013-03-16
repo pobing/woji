@@ -1,30 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Woji | <%= yield(:title) %></title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <title><%= full_title(yield(:title)) %></title>
+  <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <%= render 'layouts/shim' %>
 </head>
 <body>
-  <div class="pull-right">
-       <!--      <a title="Follow" target="_top" id="btn_follow_join" href="#"> Follow
-            </a> -->
-            <a title="login" target="_blank" id="btn_join" href="#">
-                登录
-            </a>
-            <a title="signup" target="_blank" id="btn_join" href="#">
-                注册
-            </a>
-</div>
 <div id="container">
-  <!-- <div id="header">This is the Header</div> -->
-    <%= render 'layouts/header' %>
-  <!-- <br class="clearfloat"> -->
-  <!-- <div id="menu">This is the Menu</div> -->
+  <div class="pull-right">
+    <%= link_to "Home", home_path %>
+    <%= link_to "Help", help_path %>
+    <%= link_to "Sign in", '#' %>
+    <%= link_to "Sign Up", signup_path %>
+  </div>
+  <%= render 'layouts/header' %>
   <br class="clearfloat">
+
   <div id="mainContent">
-   <%= render 'layouts/sidebar' %>
+    <%= render 'layouts/sidebar' %>
     <div id="content">
       <%= yield %>
     </div>

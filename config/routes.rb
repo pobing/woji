@@ -1,21 +1,16 @@
 Woji::Application.routes.draw do
 
 
-  get "static_pages/about"
-
-  get "static_pages/home"
-
-  get "static_pages/help"
-
-  # get "sessions/new"
-
-  # get "sessions/create"
-
-  # get "sessions/destroy"
+  get "users/new"
 
   match 'login' => "sessions#new",:as=>"login"
-  match 'signup'=> "users#sign_up" ,:as=>"signup"
-  get "home/index"
+  #match 'signup'=> "users#sign_up" ,:as=>"signup"
+  match '/signup',  to: 'users#new'
+
+  match 'home' => "static_pages#home"
+  match 'help' => "static_pages#help"
+  match 'about' => "static_pages#about"
+
   resources :users
 
   resources :hs
@@ -78,7 +73,7 @@ Woji::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
    root :to => 'posts#index'
-
+    # match '/', to: 'static_pages#home' # root_path
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.

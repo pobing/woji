@@ -1,4 +1,15 @@
 #coding:utf-8
+# == Schema Information
+#
+# Table name: posts
+#
+#  id         :integer          not null, primary key
+#  title      :string(255)
+#  item_type  :integer
+#  content    :text
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
 class Post < ActiveRecord::Base
   attr_accessible :content, :item_type, :title,:tags,:tags_attributes
   has_many :tags

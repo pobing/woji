@@ -4,10 +4,15 @@ gem 'rails', '3.2.3'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
+gem 'bcrypt-ruby', '3.0.1'
 
 gem 'execjs'
 gem 'therubyracer'
 #gem "rack", "~> 1.5.2"
+group :development do
+  gem 'annotate', '2.5.0'
+end
+
 group :development, :test do
   gem 'mysql2'
   gem 'rspec-rails', '2.11.0'
@@ -48,7 +53,7 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
-group  :test do
+group :test do
 	gem "selenium-webdriver", "~> 2.31.0"
 	gem 'factory_girl', '1.3.3'
   gem "capybara", "~> 2.0.2"
