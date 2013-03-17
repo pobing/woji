@@ -1,29 +1,21 @@
 #coding:utf-8
 module ApplicationHelper
   def get_tags
-    Tag.all
+  	Tag.all
   end
 
   def get_counts
-    all_count = Post.count
-    tweet_count = Post.where(:item_type => 0).count
-    diary_count = Post.where(:item_type => 1).count
-    counts = {:all_count => all_count, :tweet_count => tweet_count, :diary_count => diary_count}
+  	all_count = Post.count
+  	tweet_count = Post.where(:item_type=>0).count
+  	diary_count = Post.where(:item_type=>1).count
+  	counts = {:all_count=> all_count,:tweet_count=>tweet_count,:diary_count=>diary_count}
   end
 
   def recently_posts
-    Post.recently_posts
-  end
-  def full_title page_title
-    base_title = "Woji"
-    if page_title.empty?
-      base_title
-    else
-      "#{base_title} | #{page_title}"
-    end
+  	Post.recently_posts
   end
 
-  # 精彩（nice）时间格式化
+    # 精彩（nice）时间格式化
   # def status_time_ago_in_words(dt)
   #   time = time_ago_in_words(dt)
   #   Rails.logger.debug "debug time == #{time}"
@@ -46,4 +38,12 @@ module ApplicationHelper
   #     dt.strftime("%Y-%m-%d %H:%M")
   #   end
   # end
+  def full_title(page_title)
+    base_title = "WoJi"
+    if page_title.empty?
+      base_title
+    else
+      "#{base_title} | #{page_title}"
+    end
+  end
 end

@@ -21,9 +21,9 @@ class Tag < ActiveRecord::Base
   #   end
   # end
   def self.tags(tags)
-   	tag_arr =  []
-  	tags.split(",").each do |t|
-      attr = {:name => t }
+    tag_arr = []
+    tags.split(",").each do |t|
+      attr = {:name => t}
       tag = Tag.new(attr)
       tag_arr << tag
       #Tag.create attr	

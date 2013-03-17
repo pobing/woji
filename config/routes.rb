@@ -1,19 +1,17 @@
 Woji::Application.routes.draw do
 
-
+  resources :users
+  resources :sessions, only: [:new, :create, :destroy]
   get "users/new"
 
-  match 'login' => "sessions#new",:as=>"login"
-  #match 'signup'=> "users#sign_up" ,:as=>"signup"
+  match '/signin', to: "sessions#new"
+  match '/signout', to: "sessions#destroy", via: :delete
   match '/signup',  to: 'users#new'
 
   match 'home' => "static_pages#home"
   match 'help' => "static_pages#help"
   match 'about' => "static_pages#about"
 
-  resources :users
-
-  resources :hs
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -9,16 +9,37 @@
 </head>
 <body>
 <div id="container">
+
   <div class="pull-right">
     <%= link_to "Home", home_path %>
     <%= link_to "Help", help_path %>
-    <%= link_to "Sign in", '#' %>
-    <%= link_to "Sign Up", signup_path %>
+    <% if session[:user_id] %>
+        <li><%= link_to "Users", '#' %></li>
+        <li id="fat-menu" class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            Account <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li><%= link_to "Profile", current_user %></li>
+            <li><%= link_to "Settings", '#' %></li>
+            <li class="divider"></li>
+            <li>
+              <%= link_to "Sign out", signout_path, method: "delete" %>
+            </li>
+          </ul>
+        </li>
+    <% else %>
+        <%= link_to "Sign in", signin_path %>
+        <%= link_to "Sign up", signup_path %>
+    <% end %>
   </div>
   <%= render 'layouts/header' %>
   <br class="clearfloat">
 
   <div id="mainContent">
+    <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+    <% end %>
     <%= render 'layouts/sidebar' %>
     <div id="content">
       <%= yield %>
@@ -26,6 +47,7 @@
   </div>
   <br class="clearfloat">
   <%= render 'layouts/footer' %>
+  <%= debug(params) if Rails.env.development? %>
 </div>
 </body>
 </html>

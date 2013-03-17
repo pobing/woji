@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= full_title(yield(:title)) %></title>
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <%= render 'layouts/shim' %>
+</head>
+<body>
+<div id="container">
+  <div class="pull-right">
+    <%= link_to "Home", home_path %>
+    <%= link_to "Help", help_path %>
+    <%= link_to "Sign in", '#' %>
+    <%= link_to "Sign Up", signup_path %>
+  </div>
+  <br class="clearfloat">
+
+  <div id="mainContent">
+     <%= yield %>
+  </div>
+  <br class="clearfloat">
+  <%= render 'layouts/footer' %>
+  <%= debug(params) if Rails.env.development? %>
+</div>
+</body>
+</html>
