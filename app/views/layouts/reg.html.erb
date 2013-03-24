@@ -18,6 +18,9 @@
   <br class="clearfloat">
 
   <div id="mainContent">
+    <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+    <% end %>
      <%= yield %>
   </div>
   <br class="clearfloat">

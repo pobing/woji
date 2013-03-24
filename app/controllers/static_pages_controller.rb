@@ -1,4 +1,5 @@
 class StaticPagesController < ApplicationController
+  layout "reg"
   def home
   end
 

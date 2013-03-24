@@ -4,7 +4,6 @@ class PostsController < ApplicationController
   end
 
   def index
-    Rails.logger.debug "debug ==c #{current_user.email}"
     @post = if params[:type]
               Post.where(:item_type => params[:type].to_i)
             else
