@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
-  layout "reg"
+  before_filter :logined
+  layout "home"
 
   def new
   end
@@ -14,7 +15,8 @@ class SessionsController < ApplicationController
         cookies[:remember_token] = user.remember_token
       end
       # session[:user_id] = user.id
-      redirect_to root_url, :notice => "Logged in !"  
+      # redirect_to root_url, :notice => "Logged in !"  
+      redirect_back_or user
     else
       flash.now.alert = 'Invalid email/password combination' 
       # flash[:error] = 'Invalid email/password combination'

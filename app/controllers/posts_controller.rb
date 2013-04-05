@@ -4,11 +4,11 @@ class PostsController < ApplicationController
   end
 
   def index
-    @post = if params[:type]
-              Post.where(:item_type => params[:type].to_i)
-            else
-              Post.all
-            end
+    @posts = if params[:type]
+      Post.where(:item_type => params[:type].to_i)
+      else
+        Post.paginate(page: params[:page])
+      end
   end
 
   def create
@@ -23,18 +23,18 @@ class PostsController < ApplicationController
 
   def post_tweet
     type = Post::Type::TWEET
-    Rails.logger.debug "debug ----post_message--------- #{params}"
     attr = {:title => Post.tweet_title(params[:message]), :content => params[:message], :item_type => type}
     Post.create attr
     redirect_to posts_url
   end
 
   def show
-    @post = Post.find(params[:id])
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @h }
-    end
+    @post = Post.find_by_id(params[:id])
+    # respond_to do |format|
+    #   format.html # show.html.erb
+    #   format.json { render json: @post }
+    # end
+    redirect_to posts_url if @post.nil?
   end
 
   def destroy

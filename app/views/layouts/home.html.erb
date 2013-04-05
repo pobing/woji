@@ -2,33 +2,32 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Woji</title>
-    <%= stylesheet_link_tag "application", :media => "all" %>
+    <title><%= full_title(yield(:title)) %></title>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
     <%= render 'layouts/shim' %>
   </head>
+
   <body>
     <div class="container-narrow">
       <%= render 'layouts/msg'%><!-- msg -->
       <%= render 'layouts/header'%> <!-- header -->
       <hr>
       <div class="row">
-        <div class="span9">
-          <div class="row">
-            <div class="span7">
-            <%=yield%>
-            </div>
-            <div class="span2">
-            <%= render 'layouts/sidebar'%>
-          </div>
-        </div>
+      <%= yield %>
       </div>
-    </div>
-    <hr>
-    <div class="footer">
-      <%=render 'layouts/footer'%>
-    </div>
+      <hr>
+      <div class="footer">
+        <%=render 'layouts/footer'%>
+      </div>
+
     </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+
   </body>
 </html>

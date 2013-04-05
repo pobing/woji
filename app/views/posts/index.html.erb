@@ -1,9 +1,8 @@
 <%= render 'form' %>
-<div>  
-  <div>
-    <% @post.each do |post|  %> 
+<div>
+    <% @posts.each do |post|  %> 
       <div class="title">
-        <h2><%= link_to post.title,post %></h2>
+        <h3><%= link_to post.title,post %></h3>
       </div> <!-- .title -->
       <p>分类:<%=post.type_s %>  by: pobing </p>
       <div class="POST">
@@ -13,9 +12,12 @@
           标签: <%=post.tags.map(&:name).join(",")%>
           <%end%>
           <%= link_to '删除', post, confirm: 'Are you sure?', method: :delete %> </p>
-      </div>  
+      </div> 
     <%end%>
-    <%if @post.empty? %>
+   
+    <%if @posts.empty? %>
     <p>抱歉,该栏目下无结果!</p>
     <%end%>
+    <%= will_paginate %>
+    
 </div> <!-- .entry -->

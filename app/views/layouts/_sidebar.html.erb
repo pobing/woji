@@ -1,8 +1,7 @@
-<div id="sidebar">
     <h3>站内搜索</h3>
-        <%= form_tag("/search", :method => "get") do %>
-        <%= text_field_tag(:q,"",:class=>"input-medium search-query") %>
-        <%= submit_tag("搜索") %>
+        <%= form_tag("/search",:class=>"form-search", :method => "get") do %>
+        <div class="input-append"><%= text_field_tag(:q,"",:class=>"span2 search-query") %>
+        <%= submit_tag("搜索",:class=>"btn") %></div>
     <% end %>
     <h3>最新记录</h3>
     <% recently_posts.each do |r| %>
@@ -18,4 +17,3 @@
         <p>说说: <%=get_counts[:tweet_count]%> 条 </p>
         <p>日记: <%=get_counts[:diary_count]%> 篇 </p>
     </div>
-</div>

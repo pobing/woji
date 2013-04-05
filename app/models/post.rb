@@ -16,7 +16,7 @@ class Post < ActiveRecord::Base
   default_scope :order => 'created_at DESC'
 
   validates :title, :length => {maximum: 50, message: "标题最长为50个字符"}
-
+  # self.per_page = 3
   module Type
     TWEET = 0
     DAY = 1
@@ -36,19 +36,19 @@ class Post < ActiveRecord::Base
 
   def type_s
     s = case self.item_type.to_i
-          when Type::TWEET then
-            "说说"
-          when Type::DAY then
-            "日记"
-          when Type::WEEK then
-            "周记"
-          when Type::MONTH then
-            "月记"
-          when Type::YEAR then
-            "年记"
-          when Type::AUTOBIOG then
-            "自传"
-        end
+      when Type::TWEET then
+        "说说"
+      when Type::DAY then
+        "日记"
+      when Type::WEEK then
+        "周记"
+      when Type::MONTH then
+        "月记"
+      when Type::YEAR then
+        "年记"
+      when Type::AUTOBIOG then
+        "自传"
+      end
     s
   end
 end

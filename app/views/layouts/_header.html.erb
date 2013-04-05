@@ -1,24 +1,36 @@
-<div id ="header">
-<hr>
-<h1>我记-WoJi.com</h1>
-</br>
-
-<div class="subnav subnav-fixed">
-    <ul class="nav nav-pills">
-      <li class="active"><a href="/">首页</a></li>
-      <li class=""><a href="/posts?type=0">说说</a></li>
-      <li class=""><a href="/posts?type=1">日记</a></li>
-      <li class=""><a href="#">相册</a></li>
-      <li id="preview-menu" class="dropdown">
-            <a href="#" data-toggle="dropdown" class="dropdown-toggle">更多 <b class="caret"></b></a>
-            <ul class="dropdown-menu">
+   <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li class="active"><a href="/">首页</a></li>
+          <% if current_user %>
+          <li><a href="/posts?type=0">说说</a></li>
+          <li><a href="/posts?type=1">日记</a></li>
+          <li><a href="http://www.flickr.com/photos/cn_dong/" target="_blank">图片</a></li>
+          <li><a href="#">微博</a></li>
+          <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown"
+              href="#"> 更多<b class="caret"></b></a>
+              <ul class="dropdown-menu">
               <li><a href="/posts?type=2" target="_blank">周记</a></li>
               <li><a href="/posts?type=3" target="_blank">月记</a></li>
               <li><a href="/posts?type=4" target="_blank">年记</a></li>
               <li><a href="/posts?type=5" target="_blank">自传</a></li>
-              <li class="divider"></li>
-            </ul>
+              </ul>
           </li>
-    </ul>
-  </div>
-</div>
+          <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown"
+              href="#"> <%= gravatar_for current_user,{size:20} %><b class="caret"></b><%=current_user.name%></a>
+              <ul class="dropdown-menu">
+              <li><%= link_to "Profile",current_user %></li>
+              <li><%= link_to "个人设置",edit_user_path(current_user) %></li>
+              <li><a href="/signout" target="_blank">退出</a></li>
+              </ul>
+          </li>
+          <% else %>
+          <li><a href="#">关于</a></li>
+          <li><a href="#">联系</a></li>
+          <li><a href="/signin">登录</a></li>
+          <li><a href="/signup">注册</a></li>
+          <% end %>
+        </ul>
+        <h3 class="muted"><%=link_to "我记-WoJi.com",root_path %></h3>
+      </div>

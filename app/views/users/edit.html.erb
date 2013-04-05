@@ -1,6 +1,22 @@
-<h1>Editing user</h1>
+    <div class="tabbable"> <!-- Only required for left/right tabs -->
+    <ul class="nav nav-tabs">
+    <li class="active"><a href="#tab1" data-toggle="tab">Edit User base</a></li>
+    <li><a href="#tab2" data-toggle="tab">Update Pass</a></li>
+    <li><a href="#tab3" data-toggle="tab">change avatar</a></li>
+    </ul>
+    <div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+    <p><%= render 'form' %></p>
+    </div>
+    <div class="tab-pane" id="tab2">
+    <p>Howdy, I'm in Section 2.</p>
+    </div>
+    <div class="tab-pane" id="tab3">
+    <p>Howdy, I'm in Section 3.</p>
+    </div>
+    </div>
+    </div>
 
-<%= render 'form' %>
 
 <%= link_to 'Show', @user %> |
 <%= link_to 'Back', users_path %>
