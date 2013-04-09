@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_filter :signed_in_user,:only=>[:create,:destroy,:post_tweet]
   def new
     @post = Post.new
   end
