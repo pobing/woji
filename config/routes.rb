@@ -33,9 +33,11 @@ Woji::Application.routes.draw do
     # end
     collection do
         post 'post_tweet'
+        get 'date_posts'
+        get 'archives'
       end
   end
-  
+  resources :categories 
   #   resources :products do
   #     member do
   #       get 'short'

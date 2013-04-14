@@ -14,7 +14,12 @@ module ApplicationHelper
   def recently_posts
   	Post.recently_posts
   end
-
+  def time_local(time)
+    time.strftime("%Y年%m月%d日")
+  end
+   def string_time(time)
+    time.strftime("%Y-%m-%d")
+  end
     # 精彩（nice）时间格式化
   # def status_time_ago_in_words(dt)
   #   time = time_ago_in_words(dt)

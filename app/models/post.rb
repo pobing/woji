@@ -11,12 +11,13 @@
 #  updated_at :datetime         not null
 #
 class Post < ActiveRecord::Base
-  attr_accessible :content, :item_type, :title, :tags, :tags_attributes
+  attr_accessible :content, :item_type, :title, :tags, :tags_attributes,:user_id
   has_many :tags
+  belongs_to :user
+  belongs_to :category,:foreign_key=>:item_type
   default_scope :order => 'created_at DESC'
-
   validates :title, :length => {maximum: 50, message: "标题最长为50个字符"}
-  # self.per_page = 3
+   # self.per_page = 1
   module Type
     TWEET = 0
     DAY = 1

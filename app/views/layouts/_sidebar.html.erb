@@ -4,13 +4,18 @@
         <%= submit_tag("搜索",:class=>"btn") %></div>
     <% end %>
     <h3>最新记录</h3>
+    <ul>
     <% recently_posts.each do |r| %>
-        <%=link_to r.title , r %> </br>
+        <li><%=link_to r.title , r %> </li>
     <%end%>
+    </ul>
+    <h3>Archives</h3>
+    <p><%=link_to "Archives","/posts/archives"%></p>
     <h3>Tags</h3>
     <% get_tags.each do |t| %>
       <%=link_to t.name, "#" %>
     <%end%>
+
     <h3>文章统计</h3>
     <div>
         <p>总共: <%=get_counts[:all_count]%> 篇 </p>

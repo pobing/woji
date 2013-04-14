@@ -7,55 +7,15 @@
         <%= gravatar_for @user %>
         <%= @user.name %>
       </h1>
-      <%= @user.email %>
+    </section>
+    <section>
+      Email: <%=@user.email%>
     </section>
   </aside>
+  <div class="span7">
+    <% if @user.posts.any? %>
+        <%= render '/posts/posts' %>
+    <% end %>
+    <%= will_paginate @posts %>
+  </div>
 </div>
-<p>
-  <b>Login:</b>
-  <%= @user.login %>
-</p>
-
-<p>
-  <b>Name:</b>
-  <%= @user.name %>
-</p>
-
-<p>
-  <b>Nick name:</b>
-  <%= @user.nick_name %>
-</p>
-
-<p>
-  <b>Email:</b>
-  <%= @user.email %>
-</p>
-
-<p>
-  <b>Phone:</b>
-  <%= @user.phone %>
-</p>
-
-<p>
-  <b>Avatat:</b>
-  <%= @user.avatat_id %>
-</p>
-
-<p>
-  <b>Hashed password:</b>
-  <%= @user.hashed_password %>
-</p>
-
-<p>
-  <b>Salt:</b>
-  <%= @user.salt %>
-</p>
-
-<p>
-  <b>Sex:</b>
-  <%= @user.sex %>
-</p>
-
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>

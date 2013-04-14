@@ -1,0 +1,28 @@
+<div>
+    <% @posts.each do |post|  %> 
+<!--     <div class="pull-left avatar">
+    <a href="/jasl"><img style="width:48px;height:48px;" src="http://l.ruby-china.org/user/large_avatar/1107.jpg" class="uface" alt="1107"></a>
+  </div> -->
+     <hr>
+      <div class="title">
+        <h3><%= link_to post.title,post %></h3>
+      </div> <!-- .title -->
+      <!-- <p>分类:<%=post.type_s %>  by: pobing </p> -->
+      <p>Posted on <%=link_to time_local(post.created_at),"/posts/date_posts?date=#{post.created_at}" %> by <%=link_to current_user.name,current_user %></p>
+      <div class="POST">
+        <p><%=post.content%></p>
+        <p><!-- 发布于: <%=time_ago_in_words(post.created_at)%> --> 类别:<%=link_to post.type_s, posts_path(:type=>post.item_type) %>
+          <%unless post.tags.empty? %>
+          标签: <%=post.tags.map(&:name).join(",")%>
+          <%end%>
+          <%= link_to '删除', post, confirm: 'Are you sure?', method: :delete %> </p>
+      </div> 
+
+    <%end%>
+   
+    <%if @posts.empty? %>
+    <p>抱歉,该栏目下无结果!</p>
+    <%end%>
+   
+    
+</div> <!-- .entry -->

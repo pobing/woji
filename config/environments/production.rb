@@ -47,7 +47,7 @@ Woji::Application.configure do
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
    config.assets.precompile += %w( application.js bootstrap.min.js )
-   config.assets.precompile += %w(application.css bootstrap.min.css main.css)
+   config.assets.precompile += %w(application.css bootstrap.responsive.css bootstrap.css layouts.css post.css)
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false

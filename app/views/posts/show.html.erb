@@ -1,5 +1,14 @@
-<p><h3><%= @post.title %></h3></p>
-<strong>分类:<%=@post.type_s %></strong>
+<h3><%= @post.title %></h3>
+<p>
+	Posted on <%=time_local(@post.created_at)%> 
+	by <%=link_to current_user.name,current_user %>
+</p>
 <p><%=@post.content%></p>
-<%= link_to '删除',  @post, confirm: 'Are you sure?', method: :delete %>
-<%= link_to '返回', posts_path %>
+<p> 类别:<%=@post.type_s %>
+  <%unless @post.tags.empty? %>
+    标签: <%=@post.tags.map(&:name).join(",")%>
+  <%end%>
+  <% if current_user?(@post.user) %>
+    <%= link_to '删除', @post, confirm: 'Are you sure?', method: :delete %> 
+  <%end%>
+</p>

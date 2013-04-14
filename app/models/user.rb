@@ -19,7 +19,7 @@
 class User < ActiveRecord::Base
   attr_accessible :password, :password_confirmation, :avatat_id, :email, :hashed_password, :login, :name, :nick_name, :phone, :salt, :sex
   has_secure_password
-
+  has_many :posts
   before_save { |user| user.email= email.downcase }
   before_save { generate_token(:remember_token) }
 

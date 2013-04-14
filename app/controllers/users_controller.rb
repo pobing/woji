@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
   before_filter :logined ,:only=>[:new]
   before_filter :signed_in_user, :only=>[:update,:destroy]
+  def index
+    @users = User.all
+  end
   def new
     @user = User.new
     render :layout => "home"
@@ -19,6 +22,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @posts = @user.posts.paginate(page: params[:page])
   end
 
   def edit
@@ -33,4 +37,5 @@ class UsersController < ApplicationController
       render 'edit'
     end
   end
+
 end
