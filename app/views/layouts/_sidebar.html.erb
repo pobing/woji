@@ -1,5 +1,5 @@
     <h3>站内搜索</h3>
-        <%= form_tag("/search",:class=>"form-search", :method => "get") do %>
+        <%= form_tag("",:class=>"form-search", :method => "get") do %>
         <div class="input-append"><%= text_field_tag(:q,"",:class=>"span2 search-query") %>
         <%= submit_tag("搜索",:class=>"btn") %></div>
     <% end %>

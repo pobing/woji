@@ -20,8 +20,4 @@ class ApplicationController < ActionController::Base
       redirect_to signin_path, notice: "Please sigin in"
   	end
   end
-
-
-
- 
 end

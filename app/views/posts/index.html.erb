@@ -1,4 +1,6 @@
+<%if current_user %>
 <%= render 'form' %>
+<%end%>
 <hr>
 <%=render 'index'%>
 <%= will_paginate %>
