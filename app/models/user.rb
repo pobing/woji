@@ -1,3 +1,4 @@
+#encoding:utf-8
 # == Schema Information
 #
 # Table name: users
@@ -26,7 +27,7 @@ class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: {with: VALID_EMAIL_REGEX},
             uniqueness: true
-  validates :name, presence: true, length: {maximum: 50}
+  validates :name,  length: {maximum: 50}
   # validates :password, presence: true, length: {minimum: 6}, :if => :password_required?
   # validates :password_confirmation, presence: true
   validates :password_confirmation , :presence =>{:message=>"确认密码不能为空"} ,:if=>:password_required?        
