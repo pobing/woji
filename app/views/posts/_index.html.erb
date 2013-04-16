@@ -1,9 +1,7 @@
 <div>
     <% @posts.each do |post|  %> 
-     <hr>
-      <div class="title">
-        <h3><%= link_to post.title,post %></h3>
-      </div> <!-- .title -->
+      <h3><%= link_to post.title,post %></h3>
+      <!-- .title -->
       <!-- <p>分类:<%=post.type_s %>  by: pobing </p> -->
       <p>Posted on <%=link_to time_local(post.created_at),"/posts/date_posts?date=#{post.created_at}" %> by <%=link_to post.author,post.user %></p>
       <div class="POST">
@@ -22,7 +20,7 @@
     <%end%>
    
     <%if @posts.empty? %>
-      <p>抱歉,该栏目下无结果!</p>
+      <p>抱歉,该栏目下无结果, <%=link_to "See all", posts_url %></p>
     <%end%>
    
     

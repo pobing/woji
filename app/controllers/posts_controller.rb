@@ -14,6 +14,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(params[:post])
+    @post.content =  add_auto_link(@post.content)
     @post.tags = Tag.tags(params[:tags])
     @post.user_id = current_user.id
     if @post.save
@@ -25,7 +26,8 @@ class PostsController < ApplicationController
 
   def post_tweet
     type = Post::Type::TWEET
-    attr = {:title => Post.tweet_title(params[:message]), :content => params[:message], :item_type => type,:user_id => current_user.id}
+    message = add_auto_link(params[:message]) #unless params[:message] == ""
+    attr = {:title => Post.tweet_title(params[:message]), :content => message, :item_type => type,:user_id => current_user.id}
     Post.create attr
     redirect_to posts_url
   end

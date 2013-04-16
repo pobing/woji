@@ -9,6 +9,7 @@ gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9'
 gem 'execjs'
 gem 'therubyracer'
+gem "rails_autolink"
 #gem "rack", "~> 1.5.2"
 group :development do
   gem 'annotate', '2.5.0'

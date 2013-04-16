@@ -20,4 +20,7 @@ class ApplicationController < ActionController::Base
       redirect_to signin_path, notice: "Please sigin in"
   	end
   end
+  def add_auto_link(content)
+     auto_link(content,:html => { :target => '_blank' }
+  end
 end
