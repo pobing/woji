@@ -28,7 +28,7 @@ class Post < ActiveRecord::Base
   end
 
   def self.tweet_title(str)
-    str.slice(0..9)
+    str.slice(0..12)
   end
 
   def self.recently_posts
@@ -51,5 +51,8 @@ class Post < ActiveRecord::Base
         "自传"
       end
     s
+  end
+  def author
+    self.user.try(:name) || "Who"
   end
 end
