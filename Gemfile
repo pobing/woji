@@ -9,7 +9,9 @@ gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9'
 gem 'execjs'
 gem 'therubyracer'
-gem "rails_autolink"
+# gem "rails_autolink"
+gem 'redcarpet'
+gem 'coderay'
 #gem "rack", "~> 1.5.2"
 group :development do
   gem 'annotate', '2.5.0'
@@ -60,8 +62,8 @@ group :test do
   gem 'factory_girl_rails', '4.1.0'
   gem "capybara", "~> 2.0.2"
   gem 'database_cleaner'
-  gem 'libnotify', '0.5.9'
-  gem 'rb-inotify', '~> 0.9'
+  #gem 'libnotify', '0.5.9'
+  #gem 'rb-inotify', '~> 0.9'
 
 
 end

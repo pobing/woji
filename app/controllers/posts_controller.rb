@@ -14,7 +14,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(params[:post])
-    @post.content =  add_auto_link(@post.content)
+    # @post.content =  add_auto_link(@post.content)
     @post.tags = Tag.tags(params[:tags])
     @post.user_id = current_user.id
     if @post.save
@@ -26,8 +26,9 @@ class PostsController < ApplicationController
 
   def post_tweet
     type = Post::Type::TWEET
-    message = add_auto_link(params[:message]) #unless params[:message] == ""
-    attr = {:title => Post.tweet_title(params[:message]), :content => message, :item_type => type,:user_id => current_user.id}
+    # message = add_auto_link(params[:message]) #unless params[:message] == ""
+    message = params[:message]
+    attr = {:title => Post.tweet_title(message), :content => message, :item_type => type,:user_id => current_user.id}
     Post.create attr
     redirect_to posts_url
   end
@@ -51,7 +52,7 @@ class PostsController < ApplicationController
     # Client.where(:created_at => (Time.now.midnight - 1.day)..Time.now.midnight)
      # @posts = Post.where("DATE(created_at) = ?", params[:date]).paginate(page: params[:page])
      date = params[:date].to_date
-      @posts = Post.where(:created_at => (date.yesterday..date.tomorrow)).paginate(page: params[:page])
+     @posts = Post.where(:created_at => (date.yesterday..date.tomorrow)).paginate(page: params[:page])
   end
   def archives
      @posts_by_month = Post.find(:all, :order => "created_at DESC").group_by { |post| post.created_at.strftime("%B %Y")}
