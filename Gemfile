@@ -10,8 +10,8 @@ gem 'bootstrap-will_paginate', '0.0.9'
 gem 'execjs'
 gem 'therubyracer'
 # gem "rails_autolink"
-gem 'redcarpet'
-gem 'coderay'
+gem 'redcarpet','2.2.2'
+gem 'coderay','1.0.9'
 #gem "rack", "~> 1.5.2"
 group :development do
   gem 'annotate', '2.5.0'
