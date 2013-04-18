@@ -82,7 +82,7 @@ def markdown(text)
         :strikethrough =>true
       }
     markdown = Redcarpet::Markdown.new(HTMLwithCodeRay,options)
-    markdown.render(h(text)).html_safe
+    markdown.render(text).html_safe
   end
 
   class HTMLwithCodeRay < Redcarpet::Render::HTML

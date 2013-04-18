@@ -5,7 +5,7 @@
       <!-- <p>分类:<%=post.type_s %>  by: pobing </p> -->
       <p>Posted on <%=link_to time_local(post.created_at),"/posts/date_posts?date=#{post.created_at}" %> by <%=link_to post.author,post.user %></p>
       <div class="POST">
-        <p><%=markdown(post.content)%></p>
+         <%=raw markdown(post.content)%>
         <p>
           <!-- 发布于: <%=time_ago_in_words(post.created_at)%> -->类别:<%=link_to post.type_s, posts_path(:type=>post.item_type) %>
           <%unless post.tags.empty? %>
