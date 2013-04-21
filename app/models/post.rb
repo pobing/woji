@@ -12,19 +12,20 @@
 #
 class Post < ActiveRecord::Base
   attr_accessible :content, :item_type, :title, :tags, :tags_attributes,:user_id
-  has_many :tags
+  has_many :tags,:through =>:taggings
+  has_many :taggings
   belongs_to :user
   belongs_to :category,:foreign_key=>:item_type
   default_scope :order => 'created_at DESC'
   validates :title, :length => {maximum: 50, message: "标题最长为50个字符"}
    # self.per_page = 1
+  scope :tag_with, lambda { |tag_name| joins(:tags).where("tags.name=?",tag_name)} 
+  scope :less_than, lambda { |time| joins(:taggings).where("taggings.created_at > ?",time) }
   module Type
     TWEET = 0
     DAY = 1
-    WEEK = 2
-    MONTH = 3
-    YEAR = 4
-    AUTOBIOG = 5
+    IT = 2
+    SITE = 3
   end
 
   def self.tweet_title(str)
@@ -32,27 +33,40 @@ class Post < ActiveRecord::Base
   end
 
   def self.recently_posts
-    Post.where("item_type>0").first 5
+    Post.where("item_type>0").first 10
   end
 
   def type_s
     s = case self.item_type.to_i
       when Type::TWEET then
-        "说说"
+        "动态"
       when Type::DAY then
         "日记"
-      when Type::WEEK then
-        "周记"
-      when Type::MONTH then
-        "月记"
-      when Type::YEAR then
-        "年记"
-      when Type::AUTOBIOG then
-        "自传"
+      when Type::IT then
+        "IT"
+      when Type::SITE then
+        "网址"
       end
     s
+  end
+  
+
+
+  def update_tags(tags)
+    tags.split(',').each do |t| 
+      tag = Tag.find_by_name(t)
+      tag = Tag.create({name: t }) if tag.nil?
+      unless Tagging.exists?(post_id:self.id, tag_id: tag.id)
+        self.taggings << Tagging.new({tag_id:tag.id})
+      end
+    end
+    self.save
+  end 
+  def tag_list
+    self.tags.map(&:name).join(",")
   end
   def author
     self.user.try(:name) || "Who"
   end
+
 end

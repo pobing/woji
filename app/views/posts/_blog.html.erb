@@ -1,0 +1,11 @@
+<p><%=link_to "切换到高级模式","/posts/new"%></p>
+<%= form_tag("/posts/post_blog", :method => "post") do %>
+  <p>
+  	<%=text_field_tag(:title,nil,:placeholder=>'Post Title',:class=>"input-xlarge")%>
+  </p>
+  <p>
+  	<%= text_area_tag(:message, nil, :class => "postform") %>
+  </p>
+  <p>
+  <%=text_field_tag(:tags,nil,:placeholder=>'Add Tag',:class=>"input-xxlarge")%> <%= submit_tag("Post" ,:class=> "btn" )%> </p>
+<%end%>

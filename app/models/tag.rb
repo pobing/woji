@@ -12,7 +12,9 @@
 
 class Tag < ActiveRecord::Base
   attr_accessible :count, :name, :post_id
-  belongs_to :post
+  # belongs_to :post
+  has_many :taggings
+  has_many :posts ,:through =>:taggings
   default_scope :order => 'created_at DESC'
   # def self.save_tags(tags,post_id)
   # 	tags.split(",").each do |t|

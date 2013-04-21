@@ -12,9 +12,13 @@
     <h3>Archives</h3>
     <p><%=link_to "Archives","/posts/archives"%></p>
     <h3>Tags</h3>
-    <% get_tags.each do |t| %>
-      <%=link_to t.name, "#" %>
-    <%end%>
+
+   
+<div id="tag_cloud">
+  <% tag_cloud get_tags, %w[sm mi la] do |tag, css_class| %>
+    <%= link_to tag.name, "/posts/tag_posts?name=#{tag.name}", class: css_class,:title=>"#{tag.taggings_count}" %>
+  <% end %>
+</div>
 
     <h3>文章统计</h3>
     <div>

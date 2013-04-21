@@ -15,9 +15,11 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(params[:post])
     # @post.content =  add_auto_link(@post.content)
-    @post.tags = Tag.tags(params[:tags])
+
+    # @post.tags = Tag.tags(params[:tags])
     @post.user_id = current_user.id
     if @post.save
+      @post.update_tags(params[:tags])
       redirect_to posts_url
     else
       render action: "new"
@@ -26,11 +28,23 @@ class PostsController < ApplicationController
 
   def post_tweet
     type = Post::Type::TWEET
-    # message = add_auto_link(params[:message]) #unless params[:message] == ""
     message = params[:message]
     attr = {:title => Post.tweet_title(message), :content => message, :item_type => type,:user_id => current_user.id}
     Post.create attr
     redirect_to posts_url
+  end
+
+  def post_blog
+    type = Post::Type::TWEET
+    attr = {:title => params[:title], :content => params[:message], :item_type => type,:user_id => current_user.id}
+    post = Post.new(attr)
+    if post.save
+      post.update_tags(params[:tags])
+      redirect_to posts_url
+    else
+      flash.now.alert = post.erros
+      render action: "new"
+    end
   end
 
   def show
@@ -51,10 +65,27 @@ class PostsController < ApplicationController
   def date_posts
     # Client.where(:created_at => (Time.now.midnight - 1.day)..Time.now.midnight)
      # @posts = Post.where("DATE(created_at) = ?", params[:date]).paginate(page: params[:page])
-     date = params[:date].to_date
-     @posts = Post.where(:created_at => (date.yesterday..date.tomorrow)).paginate(page: params[:page])
+    date = params[:date].to_date
+    @posts = Post.where(:created_at => (date.yesterday..date.tomorrow)).paginate(page: params[:page])
   end
   def archives
-     @posts_by_month = Post.find(:all, :order => "created_at DESC").group_by { |post| post.created_at.strftime("%B %Y")}
+    @posts_by_month = Post.find(:all, :order => "created_at DESC").group_by { |post| post.created_at.strftime("%B %Y")}
   end
+  def tag_posts
+    @posts = Post.tag_with(params[:name])
+  end
+  def edit
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    if @post.update_attributes(params[:post])
+      @post.update_tags(params[:tags])
+      flash[:success] = "update success!"
+      redirect_to @post
+    else
+      render 'edit'
+    end
+  end 
 end

@@ -1,7 +1,7 @@
 #coding:utf-8
 module ApplicationHelper
   def get_tags
-  	Tag.all
+  	Tag.where("taggings_count >0",0)
   end
 
   def get_counts
@@ -51,43 +51,38 @@ module ApplicationHelper
       "#{base_title} | #{page_title}"
     end
   end
-  # def autolink(post)
-    # post.content = view_context.autolink(post.content)
-  # end
-  # def markdown(text)
-  #  options = {
-  #   :autolink => true,
-  #   :space_after_headers => true,
-  #   :fence_code_blocks => true,
-  #   :no_intra_emphasis => true,
-  #   :hard_wrap => true,
-  #   :strikethrough =>true
-  #  }
-  #  markdown = Redcarpet::Markdown.new(HTMLwithCodeRay,options)
-  #  markdown.render(h(text)).html_safe
-  # end
-  # class HTMLwithCodeRay < Redcarpet::Render::HTML
-  #   def block_code(code,language)
-  #     CodeRay.scan(code,language).div(:tab_with=>2)
-  #   end
-  # end
 
-def markdown(text)
-    options = {   
-        :autolink => true, 
-        :space_after_headers => true,
-        :fenced_code_blocks => true,
-        :no_intra_emphasis => true,
-        :hard_wrap => true,
-        :strikethrough =>true
-      }
-    markdown = Redcarpet::Markdown.new(HTMLwithCodeRay,options)
-    markdown.render(text).html_safe
+
+  def markdown(text)
+      options = {   
+          :autolink => true, 
+          :space_after_headers => true,
+          :fenced_code_blocks => true,
+          :no_intra_emphasis => true,
+          :hard_wrap => true,
+          :strikethrough =>true
+        }
+      markdown = Redcarpet::Markdown.new(HTMLwithCodeRay,options)
+      markdown.render(text).html_safe
   end
 
   class HTMLwithCodeRay < Redcarpet::Render::HTML
     def block_code(code, language)
-      CodeRay.scan(code, language).div(:tab_width=>2)
+      #CodeRay.scan(code, language).div(:tab_width=>2)
+      CodeRay.scan(code, language).div(:line_numbers => :table)
+    end
+  end
+
+
+
+  def tag_cloud(tags, classes)
+    max = tags.sort_by(&:taggings_count).last
+    tags.each do |tag|
+      unless tag.taggings_count.nil?
+        index = tag.taggings_count.to_f / max.taggings_count * (classes.size - 1)
+        yield(tag, classes[index.round])
+      end
+
     end
   end
 

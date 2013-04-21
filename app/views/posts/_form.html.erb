@@ -1,7 +1,26 @@
-<div>
-	<p><%= link_to '切换到高级发布模式 ', new_post_path %></p>
-   <%= form_tag("/posts/post_tweet", :method => "post") do %>
-   <%= text_area_tag(:message, nil, :placeholder => '现在说点什么？', :class => "postform") %>
-  <div><%= submit_tag("发 布" ,:class=> "btn btn-primary" )%></div>
-  <%end%>
+<div class="span7">
+  <div class="tabbable">
+    <ul class="nav nav-tabs">
+      <li class="active">
+      	<a href="#1" data-toggle="tab"> <i class="icon-edit"></i> Status Update</a>
+      </li>
+      <li>
+      	<a href="#2" data-toggle="tab"> <i class="icon-book"></i> Blog Post</a>
+      </li>
+       <li>
+      	<a href="#3" data-toggle="tab"> <i class="icon-random"></i> Link</a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active" id="1">
+        <p>	<%= render "tweet"%></p>
+      </div>
+      <div class="tab-pane" id="2">
+        <p><%= render "blog" %></p>
+      </div>
+      <div class="tab-pane" id="3">
+        <p><%= render "site" %></p>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,0 +1,7 @@
+<p><%=link_to "普通模式发布","/sites/new"%></p>
+<%= form_tag("/sites/add_by_md", :method => "post") do %>
+  	<%=text_field_tag(:sites,nil,:placeholder=>'Markdown 格式发布：[name](link)',:class=>"input-xxlarge")%> 
+  	<p>
+    <%= submit_tag("Add Site" ,:class=> "btn" )%> 
+  </p>
+<%end%>

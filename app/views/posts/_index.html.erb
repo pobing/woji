@@ -1,22 +1,27 @@
-<div>
+<div class="span7">
     <% @posts.each do |post|  %> 
+
       <h3><%= link_to post.title,post %></h3>
       <!-- .title -->
       <!-- <p>分类:<%=post.type_s %>  by: pobing </p> -->
-      <p>Posted on <%=link_to time_local(post.created_at),"/posts/date_posts?date=#{post.created_at}" %> by <%=link_to post.author,post.user %></p>
+      <p>Posted on <%=link_to time_local(post.created_at),"/posts/date_posts?date=#{post.created_at}" %> | by <%=link_to post.author,post.user %></p>
       <div class="POST">
-         <%=raw markdown(post.content)%>
+         <p><%=raw markdown(post.content)%></p>
         <p>
-          <!-- 发布于: <%=time_ago_in_words(post.created_at)%> -->类别:<%=link_to post.type_s, posts_path(:type=>post.item_type) %>
+          <!-- 发布于: <%=time_ago_in_words(post.created_at)%> -->Post in :<%=link_to post.type_s, posts_path(:type=>post.item_type) %> 
           <%unless post.tags.empty? %>
-            标签: <%=post.tags.map(&:name).join(",")%>
+           | Tagged:<% post.tags.each do |t| %>
+              <%=link_to t.name, "/posts/tag_posts?name=#{t.name}"%>
+              <%end%>
           <%end%>
           <% if current_user?(post.user)%>
-            <%= link_to '删除', post, confirm: 'Are you sure?', method: :delete %> 
+           | <%=link_to '编辑',edit_post_path(post)%>
+           | <%= link_to '删除', post, confirm: 'Are you sure?', method: :delete %> 
+
           <%end%>
         </p>
       </div> 
-
+<hr>
     <%end%>
    
     <%if @posts.empty? %>

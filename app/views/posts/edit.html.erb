@@ -1,0 +1,27 @@
+<% provide(:title, 'Post New') %>
+<div>
+  <%= form_for(@post,:html => { :class => "form-horizontal" }) do |f| %>
+    <div class="controls"><h2>Post New</h2></div>
+    <%= render 'shared/post_errors' %>
+    <div class="control-group">
+    <%= f.label :title ,class:"control-label"%>
+    <div class="controls"><%=f.text_field :title,:placeholder=>"title" %></div>
+  </div>
+  <div class="control-group">
+    <%= f.label :item_type ,class:"control-label"%>
+    <div class="controls"><%= select(:post,:item_type,Category.all.collect{|p| [ p.name, p.category_id ] })%></div>
+  </div>
+  <div class="control-group">
+    <%= f.label :content ,"Content",class:"control-label"%>
+    <div class="controls"><%= f.text_area :content ,:placeholder =>"Please in put...",:class=>"post_hight"%></div>
+  </div>
+    <div class="control-group">
+    <%= f.label :tags ,"Tags",class:"control-label"%>
+    
+    <div class="controls"><%=f.text_field :tag_list,:placeholder=>"title" %>*多个标签以","隔开 </div>
+  </div>
+  <div class="controls">
+    <%= f.submit "Post Ok", class: "btn btn-primary" %>
+  </div>
+  <% end %>
+</div>
