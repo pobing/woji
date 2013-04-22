@@ -1,4 +1,4 @@
-#coding:utf-8
+# encoding:utf-8
 class UsersController < ApplicationController
   before_filter :logined ,:only=>[:new]
   before_filter :signed_in_user, :only=>[:update,:destroy]
