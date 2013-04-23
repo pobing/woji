@@ -11,7 +11,7 @@
 #  updated_at :datetime         not null
 #
 class Post < ActiveRecord::Base
-  attr_accessible :content, :item_type, :title, :tags, :tags_attributes,:user_id
+  attr_accessible :content, :item_type, :title, :tags,:user_id
   has_many :tags,:through =>:taggings
   has_many :taggings
   belongs_to :user
