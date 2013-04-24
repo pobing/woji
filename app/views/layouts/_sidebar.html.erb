@@ -15,7 +15,7 @@
 
    
 <div id="tag_cloud">
-  <% tag_cloud get_tags, %w[sm mi la] do |tag, css_class| %>
+  <% tag_cloud get_tags, %w[s m l] do |tag, css_class| %>
     <%= link_to tag.name, "/posts/tag_posts?name=#{tag.name}", class: css_class,:title=>"#{tag.taggings_count}" %>
   <% end %>
 </div>

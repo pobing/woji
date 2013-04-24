@@ -1,3 +1,7 @@
-<h4><%=time_local(params[:date].to_date)%> 发布的文章</h4>
-<hr>
-<%=render 'index'%>
+<div class="span7">
+	<h4>
+		<%=time_local(params[:date].to_date)%> 发布的文章
+	</h4>
+	<hr>
+	<%=render 'index'%>
+</div>
