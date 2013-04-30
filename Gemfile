@@ -9,6 +9,7 @@ gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9'
 gem 'execjs'
 gem 'therubyracer'
+gem 'truncate_html','0.9.2'
 # gem "rails_autolink"
 gem 'redcarpet','2.2.2'
 gem 'coderay','1.0.9'

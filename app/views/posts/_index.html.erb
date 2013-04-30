@@ -6,9 +6,10 @@
       <!-- <p>分类:<%=post.type_s %>  by: pobing </p> -->
       <p>Posted on <%=link_to time_local(post.created_at),"/posts/date_posts?date=#{post.created_at}" %> | by <%=link_to post.author,post.user %></p>
       <div class="POST">
-         <p><%=raw markdown(post.content)%></p>
+         <p><%=raw post.summary %></p>
+         <p><%= link_to "阅读全文",post %></p>
         <p>
-          <!-- 发布于: <%=time_ago_in_words(post.created_at)%> -->Post in :<%=link_to post.type_s, posts_path(:type=>post.item_type) %> 
+          Post in: <%=link_to post.type_s, posts_path(:type=>post.item_type) %> 
           <%unless post.tags.empty? %>
            | Tagged:<% post.tags.each do |t| %>
               <%=link_to t.name, "/posts/tag_posts?name=#{t.name}"%>

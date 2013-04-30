@@ -2,7 +2,7 @@
 <div class="span7">
 	<h3><%= @post.title %></h3>
   <p>Posted on <%=link_to time_local(@post.created_at),"/posts/date_posts?date=#{@post.created_at}" %> | by <%=link_to @post.author,@post.user %></p>
-	<p><%=raw markdown(@post.content)%></p>
+	<p><%=raw @post.html %></p>
 	<p> Post in :<%=link_to @post.type_s, posts_path(:type=>@post.item_type) %> 
           <%unless @post.tags.empty? %>
            | Tagged:<% @post.tags.each do |t| %>

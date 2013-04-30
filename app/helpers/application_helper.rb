@@ -1,5 +1,6 @@
 #coding:utf-8
 module ApplicationHelper
+  include TruncateHtmlHelper
   def get_tags
   	Tag.where("taggings_count >0",0)
   end
@@ -68,8 +69,8 @@ module ApplicationHelper
 
   class HTMLwithCodeRay < Redcarpet::Render::HTML
     def block_code(code, language)
-      #CodeRay.scan(code, language).div(:tab_width=>2)
-      CodeRay.scan(code, language).div(:line_numbers => :table)
+      CodeRay.scan(code, language).div(:tab_width=>2)
+     # CodeRay.scan(code, language).div(:line_numbers => :table)
     end
   end
 
@@ -85,6 +86,9 @@ module ApplicationHelper
 
     end
   end
-
+  
+  def truncate(html)
+    truncate_html(html, :length => 300, :omission => '', :break_token => '<!-- truncate -->')
+  end
 
 end

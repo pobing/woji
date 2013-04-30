@@ -11,6 +11,7 @@
 #  updated_at :datetime         not null
 #
 class Post < ActiveRecord::Base
+  include ApplicationHelper
   attr_accessible :content, :item_type, :title, :tags,:user_id
   has_many :tags,:through =>:taggings
   has_many :taggings
@@ -65,8 +66,16 @@ class Post < ActiveRecord::Base
   def tag_list
     self.tags.map(&:name).join(",")
   end
+
   def author
     self.user.try(:name) || "Who"
   end
 
+  def html
+    markdown(self.content)
+  end
+
+  def summary
+    truncate(html)
+  end
 end
