@@ -15,6 +15,7 @@ class Post < ActiveRecord::Base
   attr_accessible :content, :item_type, :title, :tags,:user_id
   has_many :tags,:through =>:taggings
   has_many :taggings
+  has_many :comments,:dependent => :destroy
   belongs_to :user
   belongs_to :category,:foreign_key=>:item_type
   default_scope :order => 'created_at DESC'

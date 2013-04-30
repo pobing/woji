@@ -1,9 +1,6 @@
 <div class="span7">
     <% @posts.each do |post|  %> 
-
       <h3><%= link_to post.title,post %></h3>
-      <!-- .title -->
-      <!-- <p>分类:<%=post.type_s %>  by: pobing </p> -->
       <p>Posted on <%=link_to time_local(post.created_at),"/posts/date_posts?date=#{post.created_at}" %> | by <%=link_to post.author,post.user %></p>
       <div class="POST">
          <p><%=raw post.summary %></p>
@@ -20,7 +17,9 @@
            | <%= link_to '删除', post, confirm: 'Are you sure?', method: :delete %> 
 
           <%end%>
+         | 评论 <%= post.comments_count || 0 %> 
         </p>
+        <p>分享</p>
       </div> 
 <hr>
     <%end%>

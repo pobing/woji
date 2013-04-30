@@ -1,0 +1,22 @@
+<%= form_for([@post,@post.comments.build],:html => { :class => "form-horizontal" }) do |f| %>
+<% unless current_user %>
+  <div class="control-group">
+    <%= text_field :user,:name,:class=> "input-xlarge",:placeholder => 'Name or Nickname' %> *
+  </div>
+    <div class="control-group">
+    <%= email_field :user,:email,:class=> "input-xlarge",:placeholder => 'Your Email' %> *
+  </div>
+  <div class="control-group">
+    <%= url_field :user,:website,:class=> "input-xlarge",:placeholder => 'Your Website' %>
+    <p class="help-block">请输入您的twitter网址，以便我们收录</p>
+  </div>
+<% end %>
+  <div class="control-group">
+    <%= f.text_area :content,:class=> "postform",:placeholder => 'Leave a comment' %>
+    <p class="help-block">You can use HTML tags for formatting.</p>
+  </div>
+  <div class="control-group">
+    <%= f.submit "Post Comment",:class=>"btn btn-large" %>
+  </div>
+<% end %>
+

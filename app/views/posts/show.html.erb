@@ -1,7 +1,9 @@
 <% provide(:title, 'show posts') %>
 <div class="span7">
-	<h3><%= @post.title %></h3>
-  <p>Posted on <%=link_to time_local(@post.created_at),"/posts/date_posts?date=#{@post.created_at}" %> | by <%=link_to @post.author,@post.user %></p>
+  <header class="clearfix">
+    <h3><%= @post.title %></h3>
+      <%= gravatar_for @post.user %> <span class="author"><%=link_to @post.author,@post.user %></span><br>Posted on <%=link_to time_local(@post.created_at),"/posts/date_posts?date=#{@post.created_at}" %>
+  </header>
 	<p><%=raw @post.html %></p>
 	<p> Post in :<%=link_to @post.type_s, posts_path(:type=>@post.item_type) %> 
           <%unless @post.tags.empty? %>
@@ -14,4 +16,9 @@
            | <%= link_to '删除', @post, confirm: 'Are you sure?', method: :delete %> 
           <%end%>
 	</p>
+  
+  <h3><%=@post.comments_count%> comments</h3>
+     <%= render @post.comments %>   
+  <h3>Add comment</h3>
+  <%= render "comments/form" %>
 </div>
