@@ -1,4 +1,4 @@
-<%= form_tag("/api/users/#{current_user.id}/update_pwd", :class => "form-horizontal",:id=>"update_pwd_form") do -%>
+<%= form_tag("/api/users/#{current_user.try(:id)}/update_pwd", :class => "form-horizontal",:id=>"update_pwd_form") do -%>
 <div class="control-group">
   <%=label_tag 'old_password', nil, :class => 'control-label'%>
   <div class="controls">
@@ -17,32 +17,7 @@
    <%=password_field_tag 'password_confirmation'%>
   </div>
 </div>
-  <div class="controls"><%= submit_tag 'Update Password',
-  :class => 'btn',:id => "create_item_button", :onclick=>"javascript:update_pwd()" %></div>
+  <div class="controls"><%= submit_tag 'Update Password',  :class => 'btn'%></div>
 <% end -%>
-<script type="text/javascript">
+<%= javascript_include_tag "user" %>  
 
- //$(document).ready(function(){
-  // $('#update_pwd_form').submit(
-   // );
-//  function update_pwd(){    
-//     var formParam = $("#update_pwd"); 
-//      $('#create_item_button').click(function() {
-//         $.ajax({    
-//         type: formParam.attr('method'),        
-//         url:formParam.attr('action'),    
-//         data:formParam.serialize(),    
-//         cache:false,    
-//         dataType:'json',    
-//         success:function(data){   
-//           if (data.retCode == 1)
-//            alert("update success"); 
-//          return false;
-//         }    
-//      });  
-//     });
-    
-//  } ;
- //});
-
-</script>

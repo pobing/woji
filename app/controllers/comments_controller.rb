@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+
   def create
     @post = Post.find_by_id(params[:post_id])
     commenter = current_user if current_user
@@ -12,7 +13,7 @@ class CommentsController < ApplicationController
     if @post && @post.comments.create(attr)
       redirect_to post_path(@post)
     else
-      render :json=>{retCode: 0 }
+      render :json=>{ retCode: 0 }
     end
   end
 

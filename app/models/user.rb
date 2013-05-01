@@ -28,9 +28,9 @@ class User < ActiveRecord::Base
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: {with: VALID_EMAIL_REGEX},
-            :uniqueness => { message: "Email已经存在"},
-  validates :name,  length: { maximum: 50,:message=> "姓名不能超过50字符"}
-  validates :login, length: { maximum: 50 ,:message=> "登录名不能超过50字符"}, uniqueness: {:message=> "登录名已存在"}
+            :uniqueness => { message: "Email已经存在"}
+  validates :name, :length => { maximum: 50,:message=> "姓名不能超过50字符"}
+  validates :login, :length => { maximum: 50,:message=> "登录名不能超过50字符"} #, uniqueness: { :message => "登录名已存在"}
   # validates :password, presence: true, length: {minimum: 6}, :if => :password_required?
   # validates :password_confirmation, presence: true
   validates :password_confirmation , :presence =>{:message=>"确认密码不能为空"} ,:if=>:password_required?        
