@@ -37,6 +37,10 @@ avatar_id
 phone
 hashed_password,
 salt 
+active_token
+status
+website
+is_admin
 
 Category => categories
 id
@@ -44,5 +48,10 @@ category_id
 item_id 
 item_type (user,post)
 
+Comment
+id
+post_id
+content
+user_id
 
 

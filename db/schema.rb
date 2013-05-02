@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130421025539) do
+ActiveRecord::Schema.define(:version => 20130430081706) do
 
   create_table "categories", :force => true do |t|
     t.integer  "category_id"
@@ -20,13 +20,40 @@ ActiveRecord::Schema.define(:version => 20130421025539) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "comments", :force => true do |t|
+    t.integer  "post_id"
+    t.text     "content"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "comments", ["post_id"], :name => "index_comments_on_post_id"
+
+  create_table "hs", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "likes", :force => true do |t|
+    t.string   "commenter"
+    t.text     "body"
+    t.integer  "post_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "likes", ["post_id"], :name => "index_likes_on_post_id"
+
   create_table "posts", :force => true do |t|
     t.string   "title"
     t.integer  "item_type"
     t.text     "content"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
     t.integer  "user_id"
+    t.integer  "comments_count"
   end
 
   create_table "sites", :force => true do |t|
@@ -61,12 +88,16 @@ ActiveRecord::Schema.define(:version => 20130421025539) do
     t.string   "hashed_password"
     t.string   "salt"
     t.integer  "sex"
-    t.datetime "created_at",             :null => false
-    t.datetime "updated_at",             :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.string   "password_digest"
     t.string   "remember_token"
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
+    t.integer  "status",                 :default => 0
+    t.integer  "is_admin",               :default => 0
+    t.string   "website"
+    t.string   "active_token"
   end
 
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"

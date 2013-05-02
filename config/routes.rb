@@ -1,4 +1,7 @@
 Woji::Application.routes.draw do
+  resources :comments
+
+
   match '/signin', to: "sessions#new"
   match '/signout', to: "sessions#destroy"#, via: :delete
   match '/signup',  to: 'users#new'
@@ -17,6 +20,7 @@ Woji::Application.routes.draw do
     # member do
     #  post 'post_message' 
     # end
+    resources :comments
     collection do
         post 'post_tweet'
         post 'post_blog'
