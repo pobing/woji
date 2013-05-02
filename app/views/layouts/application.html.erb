@@ -10,13 +10,14 @@
   </head>
   <body>
     <div class="container-narrow">
-      <%= render 'layouts/msg'%><!-- msg -->
       <%= render 'layouts/header'%> <!-- header -->
       <hr>
       <div class="row">
         <div class="span10">
           <div class="row">
             <div class="span7">
+            <%= render 'layouts/msg'%>
+            <%= render 'layouts/message'%>
             <%=yield%>
             </div>
             <div class="span3">

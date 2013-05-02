@@ -25,5 +25,9 @@ git
 heroku
 ...
 
+生成管理帐号:  
+``` ruby
+rake db:admin #console will inputs account & password
+```
 Enjoy!
  --jdd 2013-3
