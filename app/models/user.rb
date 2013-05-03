@@ -50,6 +50,10 @@ class User < ActiveRecord::Base
     # UserMailer.password_reset(self).deliver
   end
 
+  def is_admin?
+    self.is_admin == 1 
+  end
+
   private
   def generate_token(column)
     begin 

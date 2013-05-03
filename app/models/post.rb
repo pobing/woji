@@ -51,8 +51,6 @@ class Post < ActiveRecord::Base
       end
     s
   end
-  
-
 
   def update_tags(tags)
     tags.split(',').each do |t| 
@@ -64,6 +62,7 @@ class Post < ActiveRecord::Base
     end
     self.save
   end 
+
   def tag_list
     self.tags.map(&:name).join(",")
   end

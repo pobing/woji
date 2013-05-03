@@ -7,5 +7,8 @@
   	<%= text_area_tag(:message, nil, :class => "postform") %>
   </p>
   <p>
+  	<%= select(:post,:item_type,Category.all.collect{|p| [ p.name, p.category_id ] },{ :include_blank => true })%>
+  </p>
+  <p>
   <%=text_field_tag(:tags,nil,:placeholder=>'Add Tag',:class=>"input-xxlarge")%> <%= submit_tag("Post" ,:class=> "btn" )%> </p>
 <%end%>

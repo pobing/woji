@@ -13,6 +13,7 @@ gem 'truncate_html','0.9.2'
 # gem "rails_autolink"
 gem 'redcarpet','2.2.2'
 gem 'coderay','1.0.9'
+#gem 'rails_admin'
 #gem "rack", "~> 1.5.2"
 group :development do
   gem 'annotate', '2.5.0'

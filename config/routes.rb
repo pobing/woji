@@ -8,6 +8,7 @@ Woji::Application.routes.draw do
   match 'home' => "static_pages#home"
   match 'help' => "static_pages#help"
   match 'about' => "static_pages#about"
+  match '/manage/:action', :controller => "manage" , :as=>"manage"
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :password_resets

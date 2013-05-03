@@ -36,8 +36,7 @@ class PostsController < ApplicationController
   end
 
   def post_blog
-    type = Post::Type::TWEET
-    attr = {:title => params[:title], :content => params[:message], :item_type => type,:user_id => current_user.id}
+    attr = {:title => params[:title], :content => params[:message], :item_type => params[:item_type],:user_id => current_user.id}
     post = Post.new(attr)
     if post.save
       post.update_tags(params[:tags])

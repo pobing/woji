@@ -91,4 +91,8 @@ module ApplicationHelper
     truncate_html(html, :length => 300, :omission => '', :break_token => '<!-- truncate -->')
   end
 
+  def favicon
+    raw "<link rel='shortcut icon' type='image/x-icon' href='#{ image_path('/favicon.ico')}' />"
+  end
+
 end
