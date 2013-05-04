@@ -1,7 +1,7 @@
 # encoding:utf-8
 class CategoriesController < ApplicationController
   # before_filter :logined 
-
+  layout 'manage'
   def index
     @categories = Category.all
   end
@@ -14,7 +14,7 @@ class CategoriesController < ApplicationController
     @category = Category.new(params[:category])
     if @category.save
       flash[:success] = "success!"
-      redirect_to @category
+      redirect_to categories_path
     else
       render 'new'
     end

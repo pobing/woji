@@ -1,14 +1,15 @@
 <p><%=link_to "切换到高级模式","/posts/new"%></p>
 <%= form_tag("/posts/post_blog", :method => "post") do %>
   <p>
-  	<%=text_field_tag(:title,nil,:placeholder=>'Post Title',:class=>"input-xlarge")%>
+  	<%=text_field_tag(:title,nil,:placeholder=>'文章标题',:class=>"input-xlarge")%>
   </p>
   <p>
   	<%= text_area_tag(:message, nil, :class => "postform") %>
   </p>
   <p>
-  	<%= select(:post,:item_type,Category.all.collect{|p| [ p.name, p.category_id ] },{ :include_blank => true })%>
+  	<%= select(:post,:item_type, category_array ,{:prompt => '-请选择文章分类-'})%>
+    <%=text_field_tag(:tags,nil,:placeholder=>'添加标签',:class=>"input-large")%>  
+    <%= submit_tag("Post" ,:class=> "btn" )%>         
   </p>
-  <p>
-  <%=text_field_tag(:tags,nil,:placeholder=>'Add Tag',:class=>"input-xxlarge")%> <%= submit_tag("Post" ,:class=> "btn" )%> </p>
+ 
 <%end%>

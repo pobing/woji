@@ -1,12 +1,10 @@
-<h1>Listing users</h1>
-<%= link_to 'New User', new_user_path %></p>
-<table class="table">
+<p><i class="icon-plus"></i> <%= link_to '添加新用户', new_user_path %></p>
+<table class="table table-condensed">
   <tr>
-    <th>Name</th>
+    <th>login</th>
     <th>Nick name</th>
     <th>Email</th>
     <th>Phone</th>
-    <th>Avatat</th>
     <th>Sex</th>
     <th></th>
     <th></th>
@@ -14,18 +12,39 @@
   </tr>
 
 <% @users.each do |user| %>
-  <tr>
-    <td><%= user.name %></td>
+  <tr id="<%= dom_id user %>">
+
+    <td><span class="hidden id_<%=user.id%>"><%=user.id%></span><%= user.login %></td>
     <td><%= user.nick_name %></td>
     <td><%= user.email %></td>
     <td><%= user.phone %></td>
-    <td><%= user.avatat_id %></td>
-    <td><%= user.sex %></td>
-    <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= user.sex_name %></td>
+    <td><%= link_to icon_opt('icon-pencil'), edit_user_path(user),{ :title => "编辑用户" } %></td>
+    <td><%= link_to icon_opt('icon-lock'), edit_user_path(user),{ :title => "修改密码" } %></td>
+<!--     <td>
+<a href="#" onclick="deluser(<%=user.id %>); return false;">xx</a>
+    </td> -->
+    <td><%= link_to icon_opt('icon-trash'), user, confirm: 'Are you sure?', :title => "删除用户",  method: :delete, :remote => true %></td>
   </tr>
 <% end %>
 </table>
+<script type="text/javascript">
+ // function deluser(id){
+ //    $.ajax({
+ //      type: "DELETE",
+ //      dataType:'json',
+ //      url: "/users/" + id,
+ //      success: function(data){
+ //          if (data.retCode == 1){
+ //            var _cls = ".id_" + id;
+ //            $(_cls).parents("tr").remove();
+ //            notify("success",data.msg) ;
+ //          }else{
+ //            return notify("failure",data.errors) ; 
+ //          }
+ //      }
+ //    });
+ //  }
+</script>
 
-
+<%= javascript_include_tag "user" %>  

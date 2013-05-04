@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   
   def index
     @users = User.all
+    render :layout => 'manage'
   end
   
   def new
@@ -39,6 +40,18 @@ class UsersController < ApplicationController
       redirect_to @user
     else
       render 'edit'
+    end
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    respond_to do |format|
+      if @user.destroy
+        format.js
+        format.json { render :json=>{:retCode=>1,:msg => "update success!"}}
+      else
+        format.json { render :json=>{:retCode=>0,:errors => "update fail!"}}
+      end
     end
   end
 

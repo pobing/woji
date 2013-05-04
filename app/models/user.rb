@@ -53,7 +53,10 @@ class User < ActiveRecord::Base
   def is_admin?
     self.is_admin == 1 
   end
-
+  
+  def sex_name
+    self.sex ==0 ? "女" : "男"
+  end
   private
   def generate_token(column)
     begin 

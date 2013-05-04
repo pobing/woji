@@ -1,7 +1,11 @@
 <p><%=link_to "普通模式发布","/sites/new"%></p>
 <%= form_tag("/sites/add_by_md", :method => "post") do %>
   	<%=text_field_tag(:sites,nil,:placeholder=>'Markdown 格式发布：[name](link)',:class=>"input-xxlarge")%> 
+
+  	<%= select(:post,:item_type,category_array,{:prompt => '选择站点分类'},{:class =>"span3",:multiple=>"multiple"})%>	
   	<p>
+
+
     <%= submit_tag("Add Site" ,:class=> "btn" )%> 
   </p>
 <%end%>

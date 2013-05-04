@@ -5,6 +5,7 @@
     <title>Woji</title>
     <%= stylesheet_link_tag "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "user" %>
     <%= csrf_meta_tags %>
     <%= render 'layouts/shim' %>
   </head>
@@ -13,36 +14,16 @@
       <%= render 'layouts/header'%> <!-- header -->
       <hr>
       <div class="row">
-        <div class="span10">
+        <div class="span9">
           <div class="row">
             <div class="span2">
-              <div class="well sidebar-nav">
-                <ul class="nav nav-list">
-                  <li class="nav-header">Sidebar</li>
-                  <li class="active"><a href="#">Link</a></li>
-                  <li><a href="#">Link</a></li>
-                  <li><a href="#">Link</a></li>
-                  <li><a href="#">Link</a></li>
-                  <li class="nav-header">Sidebar</li>
-                  <li><a href="#">Link</a></li>
-                  <li><a href="#">Link</a></li>
-                  <li><a href="#">Link</a></li>
-                  <li><a href="#">Link</a></li>
-                  <li><a href="#">Link</a></li>
-                  <li><a href="#">Link</a></li>
-                  <li class="nav-header">Sidebar</li>
-                  <li><a href="#">Link</a></li>
-                  <li><a href="#">Link</a></li>
-                  <li><a href="#">Link</a></li>
-                </ul>
-              </div><!--/.well -->
+              <%= render 'layouts/nav'%>
             </div>
-            <div class="span8">
-            <%= render 'layouts/msg'%>
-            <%= render 'layouts/message'%>
-            <%=yield%>
+            <div class="span7">
+              <%= render 'layouts/msg'%>
+              <%= render 'layouts/message'%>
+              <%=yield%>
             </div>
-            
         </div>
       </div>
     </div>
@@ -50,7 +31,7 @@
     <div class="footer">
       <%=render 'layouts/footer'%>
     </div>
-    </div> <!-- /container -->
+  </div> <!-- /container -->
    <%= debug(params) if Rails.env.development? %>
   </body>
 </html>

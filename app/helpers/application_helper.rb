@@ -95,4 +95,11 @@ module ApplicationHelper
     raw "<link rel='shortcut icon' type='image/x-icon' href='#{ image_path('/favicon.ico')}' />"
   end
 
+  def icon_opt(icon_str)
+    "<i class=#{icon_str}></i>".html_safe
+  end
+  def category_array
+    Category.all.map { |c| [c.name, c.category_id] } 
+  end
+
 end

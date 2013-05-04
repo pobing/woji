@@ -19,4 +19,22 @@ $(function(){
           }
       })
   });
+  
+  /*
+  $(".del_user").last().click(function(event){
+    // event.preventDefault();
+    $.ajax({
+    type: "DELETE",
+    dataType:'json',
+    url: $(this).attr("href"),
+    success: function(data){
+      $(this).parents("tr").remove();
+      if (data.retCode == 1)
+        notify("success",data.msg) ;
+      else
+        return notify("failure",data.errors) ;
+          }
+    });
+    });
+*/
 })

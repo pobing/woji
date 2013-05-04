@@ -1,10 +1,13 @@
 # encoding:utf-8
 class SitesController < ApplicationController
+ layout 'manage'
   def index
+   # render :layout => 'manage'
   end
 
   def new
   	@site = Site.new
+    render :layout => 'application'
   end
   
   def add_by_md

@@ -9,7 +9,7 @@
   </div>
   <div class="control-group">
     <%= f.label :item_type ,class:"control-label"%>
-    <div class="controls"><%= select(:post,:item_type,Category.all.collect{|p| [ p.name, p.category_id ] })%></div>
+    <div class="controls"><%= select(:post,:item_type,category_array,{:prompt => '-请选择文章分类-'})%></div>
   </div>
   <div class="control-group">
     <%= f.label :content ,"Content",class:"control-label"%>
