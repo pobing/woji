@@ -7,7 +7,7 @@
   	<%= text_area_tag(:message, nil, :class => "postform") %>
   </p>
   <p>
-  	<%= select(:post,:item_type, category_array ,{:prompt => '-请选择文章分类-'})%>
+  	<%= select(nil,:item_type, category_array ,{:prompt => '-请选择文章分类-'})%>
     <%=text_field_tag(:tags,nil,:placeholder=>'添加标签',:class=>"input-large")%>  
     <%= submit_tag("Post" ,:class=> "btn" )%>         
   </p>

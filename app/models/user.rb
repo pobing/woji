@@ -57,6 +57,11 @@ class User < ActiveRecord::Base
   def sex_name
     self.sex ==0 ? "女" : "男"
   end
+
+  def full_name
+    self.name || self.login || self.email
+  end
+
   private
   def generate_token(column)
     begin 

@@ -11,13 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130430081706) do
+ActiveRecord::Schema.define(:version => 20130508085428) do
 
   create_table "categories", :force => true do |t|
     t.integer  "category_id"
     t.string   "name"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.integer  "posts_count", :default => 0
+    t.string   "type"
   end
 
   create_table "comments", :force => true do |t|

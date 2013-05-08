@@ -15,10 +15,20 @@ module ApplicationHelper
   def recently_posts
   	Post.recently_posts
   end
+
+  def categories
+    Category.all
+  end
+
+  def sites
+    Site.all
+  end
+
   def time_local(time)
     time.strftime("%Y年%m月%d日")
   end
-   def string_time(time)
+
+  def string_time(time)
     time.strftime("%Y-%m-%d")
   end
     # 精彩（nice）时间格式化
@@ -98,6 +108,7 @@ module ApplicationHelper
   def icon_opt(icon_str)
     "<i class=#{icon_str}></i>".html_safe
   end
+
   def category_array
     Category.all.map { |c| [c.name, c.category_id] } 
   end
