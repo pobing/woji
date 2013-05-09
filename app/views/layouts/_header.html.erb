@@ -49,12 +49,9 @@
     <% end %>
   </ul>
 </div>
- <script type="text/javascript">
-// $('.nav li a').click(function(e) {
-//   var $this = $(this);
-//   if (!$this.hasClass('active')) {
-//     $this.parent.addClass('active');
-//   }
-//   e.preventDefault();
-// });
- </script>
+<script type="text/javascript">
+$('.nav li a').on('click', function() {
+    $(this).parent().parent().find('.active').removeClass('active');
+    $(this).parent().addClass('active');
+});
+</script>
