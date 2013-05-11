@@ -98,8 +98,13 @@ module ApplicationHelper
   def icon_opt(icon_str)
     "<i class=#{icon_str}></i>".html_safe
   end
+
   def category_array
     Category.all.map { |c| [c.name, c.category_id] } 
+  end
+
+  def site_name
+    "woji"
   end
 
 end

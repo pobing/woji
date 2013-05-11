@@ -26,7 +26,28 @@
            | <%= link_to '删除', @post, confirm: 'Are you sure?', method: :delete %> 
           <%end%>
 	</p>
-  
+
+    <p class="copr">
+
+       本站文章除注明转载外，均为作者原创或编译 </br>
+       欢迎任何形式的转载，但请务必注明出处，尊重他人劳动共创和谐社区 </br>
+       转载请注明：文章转载自：<%=link_to site_name,root_url %> </br>
+       原文链接地址：<%=link_to @post.title,request.url %>
+    </p>
+    <p>
+    <% unless @post.previous_post.nil? %>
+        上一篇: <%=link_to @post.previous_post.title, @post.previous_post %>
+    <% end %></br>
+    <% unless @post.next_post.nil? %>
+        下一篇: <%=link_to @post.next_post.title, @post.next_post %>
+    <%end%>
+    </p>
+    <b>同类文章推荐</b>
+    <ul>
+    <% @post.similar_post.each do |p| %>
+        <li><%=link_to p.title , p %> </li>
+    <%end%>
+    </ul>
   <h3><%=@post.comments_count%> comments</h3>
      <%= render @post.comments %>   
   <h3>Add comment</h3>

@@ -78,4 +78,17 @@ class Post < ActiveRecord::Base
   def summary
     truncate(html)
   end
+
+  def previous_post
+    self.class.where("item_type > ? and created_at < ?",Type::TWEET,self.created_at ).first
+  end
+
+  def next_post
+    self.class.where("item_type > ? and created_at > ?",Type::TWEET,self.created_at ).last
+  end
+
+  def similar_post
+    self.class.where("item_type > ? and item_type > ?",Type::TWEET,self.item_type ).first 5
+  end
+
 end
