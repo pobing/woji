@@ -1,21 +1,23 @@
 <% provide(:title, @user.name) %>
-<p id="notice"><%= notice %></p>
-<div class="row">
-  <aside class="span4">
-    <section>
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>
-    </section>
-    <section>
-      Email: <%=@user.email%>
-    </section>
-  </aside>
-  <div class="span7">
-    <% if @user.posts.any? %>
-        <%= render '/posts/posts' %>
-    <% end %>
-    <%= will_paginate @posts %>
+<div class="span7">
+  <p id="notice"><%= notice %></p>
+  <div class="row">
+    <aside class="span4">
+      <section>
+        <h1>
+          <%= gravatar_for @user %>
+          <%= @user.name %>
+        </h1>
+      </section>
+      <section>
+        Email: <%=@user.email%>
+      </section>
+    </aside>
+    <div class="span7">
+      <% if @user.posts.any? %>
+          <%= render '/posts/posts' %>
+      <% end %>
+      <%= will_paginate @posts %>
+    </div>
   </div>
 </div>

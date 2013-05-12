@@ -42,12 +42,14 @@
         下一篇: <%=link_to @post.next_post.title, @post.next_post %>
     <%end%>
     </p>
+    <% unless @post.similar_post.empty? %>
     <b>同类文章推荐</b>
-    <ul>
-    <% @post.similar_post.each do |p| %>
-        <li><%=link_to p.title , p %> </li>
+      <ul>
+      <% @post.similar_post.each do |p| %>
+          <li><%=link_to p.title , p %> </li>
+      <%end%>
+      </ul>
     <%end%>
-    </ul>
   <h3><%=@post.comments_count%> comments</h3>
      <%= render @post.comments %>   
   <h3>Add comment</h3>

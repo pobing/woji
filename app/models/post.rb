@@ -17,12 +17,13 @@ class Post < ActiveRecord::Base
   has_many :taggings
   has_many :comments,:dependent => :destroy
   belongs_to :user
-  belongs_to :category,:foreign_key=>:item_type
+  belongs_to :category,:foreign_key=>:item_type, :counter_cache => true
   default_scope :order => 'created_at DESC'
   validates :title, :length => {maximum: 50, message: "标题最长为50个字符"}
    # self.per_page = 1
   scope :tag_with, lambda { |tag_name| joins(:tags).where("tags.name=?",tag_name)} 
   scope :less_than, lambda { |time| joins(:taggings).where("taggings.created_at > ?",time) }
+
   module Type
     TWEET = 0
     DAY = 1
@@ -68,7 +69,7 @@ class Post < ActiveRecord::Base
   end
 
   def author
-    self.user.try(:name) || "Who"
+    self.user.try(:name) || "匿名"
   end
 
   def html
@@ -91,4 +92,7 @@ class Post < ActiveRecord::Base
     self.class.where("item_type > ? and item_type > ?",Type::TWEET,self.item_type ).first 5
   end
 
+  def category_name
+    self.category.try(:name) || "动态"
+  end
 end

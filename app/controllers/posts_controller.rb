@@ -3,6 +3,7 @@ class PostsController < ApplicationController
   before_filter :signed_in_user,:only=>[:create,:destroy,:post_tweet]
   def new
     @post = Post.new
+    #render :layout=>'post'
   end
 
   def index
@@ -15,9 +16,6 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(params[:post])
-    # @post.content =  add_auto_link(@post.content)
-
-    # @post.tags = Tag.tags(params[:tags])
     @post.user_id = current_user.id
     if @post.save
       @post.update_tags(params[:tags])
@@ -53,6 +51,7 @@ class PostsController < ApplicationController
     #   format.html # show.html.erb
     #   format.json { render json: @post }
     # end
+    # render :layout=>'post'
     redirect_to posts_url if @post.nil?
   end
 

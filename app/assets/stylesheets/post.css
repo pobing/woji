@@ -13,3 +13,9 @@
 .copr {
   background-color: #F2F2F2;
 }
+.post_form-horizontal .control-label {
+    float: none;
+    padding-top: 0;
+    text-align: left;
+    width: auto;
+}

@@ -13,8 +13,13 @@ gem 'truncate_html','0.9.2'
 # gem "rails_autolink"
 gem 'redcarpet','2.2.2'
 gem 'coderay','1.0.9'
+gem 'carrierwave','0.8.0'
 #gem 'rails_admin'
 #gem "rack", "~> 1.5.2"
+#gem "flickr.rb", "~> 1.1.0"
+#gem install xml-simple flickr
+#
+gem 'ueditor_rails'#, :git => 'https://github.com/jasl/ueditor_rails.git'
 group :development do
   gem 'annotate', '2.5.0'
 end

@@ -3,23 +3,39 @@
         <div class="input-append"><%= text_field_tag(:q,"",:class=>"span2 search-query") %>
         <%= submit_tag("搜索",:class=>"btn") %></div>
     <% end %>
+ <!--    <form action="http://google.com/search">
+      <input type="text" name="q">
+      <input type="hidden" name="q" value="site:wojibeta.herokuapp.com">
+    </form> -->
     <h3>最新记录</h3>
     <ul>
     <% recently_posts.each do |r| %>
         <li><%=link_to r.title , r %> </li>
     <%end%>
     </ul>
-    <h3>Archives</h3>
-    <p><%=link_to "Archives","/posts/archives"%></p>
+
+    <h3>Category</h3>
+    <ul>
+    <% categories.each do |r| %>
+        <li><%=link_to r.name, posts_path(:type=>r.id) %> (<%= r.posts_count %>)</li>
+    <%end%>
+    </ul>
     <h3>Tags</h3>
     <div id="tag_cloud">
      <% tag_cloud get_tags, %w[s m l] do |tag, css_class| %>
        <%= link_to tag.name, "/posts/tag_posts?name=#{tag.name}", class: css_class,:title=>"#{tag.taggings_count}" %>
      <% end %>
     </div>
+    <h3>Sites</h3>
+    <ul>
+    <% sites.each do |s| %>
+        <li><%=link_to s.name, s.url, :target => "_blank" %></li>
+    <%end%>
+    </ul>
     <h3>文章统计</h3>
     <div>
         <p>总共: <%=get_counts[:all_count]%> 篇 </p>
         <p>说说: <%=get_counts[:tweet_count]%> 条 </p>
         <p>日记: <%=get_counts[:diary_count]%> 篇 </p>
     </div>
+

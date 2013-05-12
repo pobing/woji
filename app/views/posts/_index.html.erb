@@ -8,7 +8,7 @@
           <p><%= link_to "阅读全文",post %></p>
          <% end %>
         <p>
-          Post in: <%=link_to post.type_s, posts_path(:type=>post.item_type) %> 
+          Post in: <%=link_to post.category_name, posts_path(:type=>post.item_type) %> 
           <%unless post.tags.empty? %>
            | Tagged:<% post.tags.each do |t| %>
               <%=link_to t.name, "/posts/tag_posts?name=#{t.name}"%>

@@ -1,7 +1,6 @@
 Woji::Application.routes.draw do
+  mount UeditorRails::Engine => '/ueditor'
   resources :comments
-
-
   match '/signin', to: "sessions#new"
   match '/signout', to: "sessions#destroy"#, via: :delete
   match '/signup',  to: 'users#new'
@@ -10,6 +9,7 @@ Woji::Application.routes.draw do
   match 'about' => "static_pages#about"
   match '/manage/:action', :controller => "manage" , :as=>"manage"
   resources :users
+  resources :files
   resources :sessions, only: [:new, :create, :destroy]
   resources :password_resets
   resources :sites do
