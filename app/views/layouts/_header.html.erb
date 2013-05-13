@@ -22,7 +22,7 @@
     <% end %>
   </div>
   <ul class="nav nav-pills">
-    <li class="<%= 'active' if current_page?(root_path) %>"><%= link_to "Home", root_path %>
+    <li class="<%= 'active' if current_page?(root_path) %>"><%= link_to "首页", root_path %>
     <% if current_user %>
       <li class="<%= 'active' if current_page?(posts_path(:type=>0)) %>"><%=link_to "说说",posts_path(:type=>0)%></li>
       <li class="<%= 'active' if current_page?(posts_path(:type=>1)) %>"><%=link_to "日记",posts_path(:type=>1)%></li>
@@ -42,8 +42,8 @@
         </ul>
       </li>
     <% else %>
-      <li class="<%= 'active' if current_page?(about_path) %>"><%= link_to "About",about_path %></li>
-      <li class="<%= 'active' if current_page?('contact_path') %>"><%= link_to "Contact","contact_path" %></li>
+      <li class="<%= 'active' if current_page?(about_path) %>"><%= link_to "关于","#" %></li>
+      <li class="<%= 'active' if current_page?('contact_path') %>"><%= link_to "联系","#" %></li>
       <li class="<%= 'active' if current_page?('/signin') %>"><%= link_to "登录","/signin"%></li>
       <li class="<%= 'active' if current_page?('/signup') %>"><%=link_to "注册", "/signup"%></li>
     <% end %>
