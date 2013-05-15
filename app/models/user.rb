@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   has_many :comments
   before_save { |user| user.email= email.downcase if email}
   before_save { generate_token(:remember_token) }
-  # mount_uploader :avatar, AvatarUploader
+  mount_uploader :avatar, Uploader
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: {with: VALID_EMAIL_REGEX},
             :uniqueness => { message: "Email已经存在"}
