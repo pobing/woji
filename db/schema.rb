@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130513151002) do
+ActiveRecord::Schema.define(:version => 20130517143055) do
 
   create_table "categories", :force => true do |t|
     t.integer  "category_id"
@@ -113,6 +113,7 @@ ActiveRecord::Schema.define(:version => 20130513151002) do
     t.string   "website"
     t.string   "active_token"
     t.string   "avatar"
+    t.integer  "avatar_id"
   end
 
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"

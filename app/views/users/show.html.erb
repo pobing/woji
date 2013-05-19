@@ -1,5 +1,5 @@
 <% provide(:title, @user.name) %>
-<div class="span7">
+<div class="span8">
   <p id="notice"><%= notice %></p>
   <div class="row">
     <aside class="span4">
@@ -13,7 +13,7 @@
         Email: <%=@user.email%>
       </section>
     </aside>
-    <div class="span7">
+    <div class="span8">
       <% if @user.posts.any? %>
           <%= render '/posts/posts' %>
       <% end %>

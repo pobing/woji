@@ -8,7 +8,8 @@
               href="#">
           <b class="caret"></b>
           <i class="icon-user"></i>
-          <%= gravatar_for current_user,{size:20} %>
+          <%#= gravatar_for current_user,{size:20} %>
+          <%= image_tag current_user.small_avatar %>
           <%=current_user.full_name%>
           </a>
           <ul class="dropdown-menu">

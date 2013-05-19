@@ -8,7 +8,11 @@ Woji::Application.routes.draw do
   match 'help' => "static_pages#help"
   match 'about' => "static_pages#about"
   match '/manage/:action', :controller => "manage" , :as=>"manage"
-  resources :users
+  resources :users do
+    member{
+      post  :update_avatar
+        }
+  end
   resources :files
   resources :sessions, only: [:new, :create, :destroy]
   resources :password_resets
@@ -37,6 +41,7 @@ Woji::Application.routes.draw do
         }
         member{
            post :update_pwd
+           # post  :update_avatar
         }
       end
     end

@@ -2,6 +2,7 @@
 class UsersController < ApplicationController
   before_filter :logined ,:only=>[:new]
   before_filter :signed_in_user, :only=>[:edit,:update,:destroy]
+  before_filter :set_user, :except => [:index,:new,:create]
   
   def index
     @users = User.all
@@ -25,26 +26,34 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
     @posts = @user.posts.paginate(page: params[:page])
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       flash[:success] = "update success!"
-      redirect_to @user
+      render 'edit'
     else
       render 'edit'
     end
   end
 
+  def update_avatar
+    flag = current_user? @user
+    @user.avatar = params[:avatar] if flag && params[:avatar]
+    if @user.save(:validate=>false)
+      flash[:success] = "upload success!"
+      render 'edit'
+    else
+      flash.now.alert = "upload failure"
+      render 'edit'
+    end
+  end
+
   def destroy
-    @user = User.find(params[:id])
     respond_to do |format|
       if @user.destroy
         format.js
@@ -54,5 +63,10 @@ class UsersController < ApplicationController
       end
     end
   end
+  
+  private
 
+  def set_user
+    @user = User.find_by_id(params[:id])
+  end
 end

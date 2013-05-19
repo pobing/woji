@@ -2,13 +2,14 @@
 <div class="control-group">
   <%=label_tag 'avatar', nil, :class => 'control-label'%>
   <div class="controls">
-   <%=img_tag(current_user.avatar_url) if current_user %>
+   <%#=img_tag(current_user.avatar_url) if current_user %>
   </div>
 
 </div>
 <div class="controls">
    <%=file_field_tag "file" %>
    <%=hidden_field_tag "avatar_cache" %>
+   <%=hidden_field_tag "container_type","User" %>
   </div>
   <div class="controls"><%= submit_tag 'Upload',  :class => 'btn'%></div>
 <% end -%>

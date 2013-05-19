@@ -23,8 +23,9 @@ class User < ActiveRecord::Base
   has_secure_password
   has_many :posts
   has_many :comments
+  belongs_to :disk_file , :foreign_key=>"avatar_id"
   before_save { |user| user.email= email.downcase if email}
-  before_save { generate_token(:remember_token) }
+  # before_save { generate_token(:remember_token) }
   mount_uploader :avatar, Uploader
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: {with: VALID_EMAIL_REGEX},
@@ -61,14 +62,33 @@ class User < ActiveRecord::Base
   def full_name
     self.name || self.login || self.email
   end
+  
+  def thumb_avatar
+    self.avatar_url(:thumb) || "#{default_avatar_dir}/thumb.png"
+  end
+
+  def small_avatar
+    self.avatar_url(:small) || "#{default_avatar_dir}/small.png"
+  end
+
+  def normal_avatar
+    self.avatar_url(:normal) || "#{default_avatar_dir}/normal.png"
+  end
 
   private
+
   def generate_token(column)
     begin 
       self[column] = SecureRandom.urlsafe_base64
     end while User.exists?(column=> self[column]) 
   end
+
   def password_required?
     self.password_digest.blank? || !password.blank?
   end
+
+  def default_avatar_dir
+    "/img/avatar"
+  end
+  
 end

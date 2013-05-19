@@ -3,9 +3,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   include SessionsHelper
 
-  def signed_in?
-  	current_user
-  end
+  # def signed_in?
+  # 	current_user
+  # end
 
   def logined
     redirect_to root_path if signed_in? 

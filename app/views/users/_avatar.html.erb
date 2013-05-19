@@ -1,15 +1,16 @@
-<%= form_tag("/files", :class => "form-horizontal",:html => {:multipart => true}) do -%>
+<%= form_tag("/users/#{current_user.try(:id)}/update_avatar", :class => "form-horizontal",:multipart => true,:id=>"update_avatar_form") do -%>
 <div class="control-group">
-  <%=label_tag 'avatar', nil, :class => 'control-label'%>
   <div class="controls">
-   <%=img_tag(current_user.avatar_url) if @user.avatar?%>
+  	<%=image_tag(current_user.normal_avatar,:id=>'img_normal') %>
+	  <%=image_tag(current_user.thumb_avatar,:id=>'img_thumb') %>
+	  <%=image_tag(current_user.small_avatar,:id=>'small_thumb') %>
   </div>
-
 </div>
 <div class="controls">
    <%=file_field_tag "avatar" %>
    <%=hidden_field_tag "avatar_cache" %>
   </div>
   <div class="controls"><%= submit_tag 'Upload',  :class => 'btn'%></div>
+   
 <% end -%>
 <%= javascript_include_tag "user" %>  
