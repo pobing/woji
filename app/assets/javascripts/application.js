@@ -17,3 +17,4 @@
 //= require bootstrap.min
 //= require common
 //= require ./ueditor_config
+//= require post

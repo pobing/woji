@@ -1,4 +1,4 @@
-$(function(){
+(function(){
   $('#update_pwd_form').on('submit', function(event){
      event.preventDefault();
       $.ajax({
@@ -61,4 +61,4 @@ $(function(){
   //     })
   // });
 
-})
+})();

@@ -29,8 +29,14 @@ class PostsController < ApplicationController
     type = Post::Type::TWEET
     message = params[:message]
     attr = {:title => Post.tweet_title(message), :content => message, :item_type => type,:user_id => current_user.id}
-    Post.create attr
-    redirect_to posts_url
+    post = Post.create attr
+    #render :json => {retCode:1}
+    # redirect_to posts_url
+    respond_to do |format|
+      if post
+       format.json { render :json=>{:retCode=>1,:item =>post.to_j(:only=>[:content,:author,:comments_count,:date])} } 
+      end
+    end
   end
 
   def post_blog

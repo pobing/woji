@@ -4,13 +4,10 @@
   <div class="row">
     <aside class="span4">
       <section>
-        <h1>
-          <%= gravatar_for @user %>
-          <%= @user.name %>
-        </h1>
-      </section>
-      <section>
-        Email: <%=@user.email%>
+        <h3>
+          <%= image_tag @user.thumb_avatar %>
+          <%= @user.full_name %>
+        </h3>
       </section>
     </aside>
     <div class="span8">
