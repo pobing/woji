@@ -105,6 +105,9 @@ class Post < ActiveRecord::Base
       h.merge!({ author: self.user }) if only.index(:author)
       h.merge!({ content: summary }) if only.index(:content)
       h.merge!({ date: time_local(created_at) }) if only.index(:date)
+      h.merge!({created_at: created_at}) if only.index(:created_at)
+      h.merge!({type: item_type}) if only.index(:type)
+      h.merge!({tags: self.tags}) if only.index(:tags)
       h = h.select { |k,v| only.include?(k) }
       h.merge! default
     end

@@ -1,5 +1,5 @@
 <p><%=link_to "切换到高级模式","/posts/new"%></p>
-<%= form_tag("/posts/post_blog", :method => "post") do %>
+<%= form_tag("/posts/post_blog", :method => "post",:id=>"blog_form") do %>
   <p>
   	<%=text_field_tag(:title,nil,:placeholder=>'文章标题',:class=>"input-xlarge")%>
   </p>
@@ -13,3 +13,4 @@
   </p>
  
 <%end%>
+<%= javascript_include_tag "post" %>

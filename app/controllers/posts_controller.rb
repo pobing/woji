@@ -30,11 +30,9 @@ class PostsController < ApplicationController
     message = params[:message]
     attr = {:title => Post.tweet_title(message), :content => message, :item_type => type,:user_id => current_user.id}
     post = Post.create attr
-    #render :json => {retCode:1}
-    # redirect_to posts_url
     respond_to do |format|
       if post
-       format.json { render :json=>{:retCode=>1,:item =>post.to_j(:only=>[:content,:author,:comments_count,:date])} } 
+       format.json { render :json=>{:retCode=>1,:item => post.to_j(post_options)} } 
       end
     end
   end
@@ -42,22 +40,22 @@ class PostsController < ApplicationController
   def post_blog
     attr = {:title => params[:title], :content => params[:message], :item_type => params[:item_type],:user_id => current_user.id}
     post = Post.new(attr)
-    if post.save
-      post.update_tags(params[:tags])
-      redirect_to posts_url
-    else
-      flash.now.alert = post.erros
-      render action: "new"
+    respond_to do |format|
+      if post.save
+        post.update_tags(params[:tags])
+        # redirect_to posts_url
+        # format.json {render :json => {re} }
+        format.json { render :json=>{:retCode=>1,:item => post.to_j(post_options)} } 
+        #render :json=>{:retCode=>1,:item => post.to_j(post_options)}
+      else
+        # flash.now.alert = post.erros
+        render action: "new"
+      end
     end
   end
 
   def show
     @post = Post.find_by_id(params[:id])
-    # respond_to do |format|
-    #   format.html # show.html.erb
-    #   format.json { render json: @post }
-    # end
-    # render :layout=>'post'
     redirect_to posts_url if @post.nil?
   end
 
@@ -95,5 +93,10 @@ class PostsController < ApplicationController
     else
       render 'edit'
     end
-  end 
+  end
+
+  protected
+  def post_options
+    {:only => [:content,:author,:comments_count,:date,:created_at,:type,:tags]}
+  end
 end
