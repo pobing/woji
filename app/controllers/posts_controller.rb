@@ -99,4 +99,8 @@ class PostsController < ApplicationController
   def post_options
     {:only => [:content,:author,:comments_count,:date,:created_at,:type,:tags]}
   end
+
+  # def user_options
+  #   {:only => [:full_name]}
+  # end
 end

@@ -96,13 +96,13 @@ class Post < ActiveRecord::Base
     self.category.try(:name) || "动态"
   end
 
-   def to_j(options={})
+  def to_j(options={})
     h = { id: id, title: title, category:category_name,}
     default = h
     if options.try(:[],:only)
       only = options[:only]
       h.merge!({ comments_count: comments_count || 0 }) if only.index(:comments_count)
-      h.merge!({ author: self.user }) if only.index(:author)
+      h.merge!({ author: self.user.to_j({:only=>[:full_name]}) }) if only.index(:author)
       h.merge!({ content: summary }) if only.index(:content)
       h.merge!({ date: time_local(created_at) }) if only.index(:date)
       h.merge!({created_at: created_at}) if only.index(:created_at)

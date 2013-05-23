@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
   end
 
   def full_name
-    self.name || self.login || self.email
+    self.name || self.login || self.email 
   end
   
   def thumb_avatar
@@ -73,6 +73,24 @@ class User < ActiveRecord::Base
 
   def normal_avatar
     self.avatar_url(:normal) || "#{default_avatar_dir}/normal.png"
+  end
+
+  def to_j(options={})
+    h = { id: id, name: name, email: email}
+    default = h
+    if options.try(:[],:only)
+      only = options[:only]
+      h.merge!({ full_name: full_name }) if only.index(:full_name)
+      h.merge!({ login: login }) if only.index(:login)
+      h.merge!({ sex: sex }) if only.index(:sex)
+      h.merge!({ avatar: avatar }) if only.index(:avatar)
+      h.merge!({ created_at: created_at}) if only.index(:created_at)
+      h.merge!({ admin: is_admin }) if only.index(:is_admin)
+      h.merge!({ phone: self.phone}) if only.index(:phone)
+      h = h.select { |k,v| only.include?(k) }
+      h.merge! default
+    end
+    h
   end
 
   private
@@ -91,4 +109,5 @@ class User < ActiveRecord::Base
     "/img/avatar"
   end
   
+
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130517143055) do
+ActiveRecord::Schema.define(:version => 20130513151002) do
 
   create_table "categories", :force => true do |t|
     t.integer  "category_id"
@@ -42,12 +42,6 @@ ActiveRecord::Schema.define(:version => 20130517143055) do
     t.integer  "container_id"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
-  end
-
-  create_table "hs", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   create_table "likes", :force => true do |t|
@@ -113,7 +107,6 @@ ActiveRecord::Schema.define(:version => 20130517143055) do
     t.string   "website"
     t.string   "active_token"
     t.string   "avatar"
-    t.integer  "avatar_id"
   end
 
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"

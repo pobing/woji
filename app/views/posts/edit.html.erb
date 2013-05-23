@@ -1,27 +1,21 @@
-<% provide(:title, 'edit posts') %>
-<div>
+<% provide(:title, '编辑博客') %>
+<div class="span8">
   <%= form_for(@post,:html => { :class => "form-horizontal" }) do |f| %>
-    <div class="controls"><h2>Post New</h2></div>
     <%= render 'shared/post_errors' %>
     <div class="control-group">
-    <%= f.label :title ,class:"control-label"%>
-    <div class="controls"><%=f.text_field :title,:placeholder=>"title" %></div>
-  </div>
-  <div class="control-group">
-    <%= f.label :item_type ,class:"control-label"%>
-    <div class="controls"><%= select(:post,:item_type,Category.all.collect{|p| [ p.name, p.category_id ] })%></div>
-  </div>
-  <div class="control-group">
-    <%= f.label :content ,"Content",class:"control-label"%>
-    <div class="controls"><%= f.text_area :content ,:placeholder =>"Please in put...",:class=>"post_hight"%></div>
-  </div>
+      <%=f.text_field :title,:placeholder=>"title", :class=>"input-xlarge" %>
+    </div>
     <div class="control-group">
-    <%= f.label :tags ,"Tags",class:"control-label"%>
-    
-    <div class="controls"><input type="input" name="tags"/>*多个标签以","隔开 </div>
-  </div>
-  <div class="controls">
-    <%= f.submit "Post Ok", class: "btn btn-primary" %>
-  </div>
+      <%= select(:post,:item_type,category_array, {:class =>"span3"})%>
+    </div>
+    <div class="control-group">
+      <%= f.ueditor_text :content , :width=>"680" %>
+    </div>
+    <div class="control-group">
+      <input type="input" name="tags" class="input-xlarge"/>*多个标签以","隔开 
+    </div>
+    <div class="control-group">
+      <%= f.submit "Post Ok", class: "btn btn-large" %>
+    </div>
   <% end %>
 </div>
