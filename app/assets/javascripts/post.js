@@ -1,4 +1,4 @@
-(function(){
+$(function(){
  var post_html = function(_data){
   var tagEl=[];
   if (_data.tags.length > 0) {
@@ -27,8 +27,8 @@
         tagEl.join(""),
          ' | <a href="/posts/',+_data.id,
          '/edit">编辑</a>',
-          ' | <a rel="nofollow" data-method="delete" data-confirm="Are you sure?" href="/posts/'+_data.id,
-          '">删除</a> ',
+          ' | <a href="/posts/'+_data.id,
+          '",class="post_del">删除</a> ',
           ' | 评论 '+_data.comments_count,
            '</p>',
         // '<p>分享</p>',
@@ -45,7 +45,7 @@ $('#tweet_form').on('submit', function(event){
           success: function(data){
             if (data.retCode == 1){
               $('#tweet_form')[0].reset();
-              $(".span7").prepend(post_html(data.item));
+              $(".span7").prepend(post_html(data.item)).hide().fadeIn('slow');
             }
             else
              return notify("failure",data.errors) ;
@@ -62,7 +62,7 @@ $('#blog_form').on('submit', function(event){
           success: function(data){
             if (data.retCode == 1){
               $('#blog_form')[0].reset();
-              $(".span7").prepend(post_html(data.item));
+              $(".span7").prepend(post_html(data.item)).hide().fadeIn('slow');;
             }
             else
              return notify("failure",data.errors) ;
@@ -80,12 +80,143 @@ $('#blog_form').on('submit', function(event){
             success: function(data){
               if (data.retCode == 1){
                 $('#site_form')[0].reset();
-                $(".span7").prepend(post_html(data.item));
+                $(".span7").prepend(post_html(data.item)).hide().fadeIn('slow');;
               }
               else
                return notify("failure",data.errors) ;
             }
         })
-    });
-})();
+  });
+
+  $('#new_post_form').on('submit', function(event){
+       event.preventDefault();
+        $.ajax({
+            url : $(this).prop('action'),
+            dataType:'json',
+            type:'POST',
+            data: $('#new_post_form').serializeArray(),
+            success: function(data){
+              if (data.retCode == 1){
+                $('#new_post_form')[0].reset();
+                return notify("success",data.msg) ;
+              }
+              else
+               return notify("failure",data.errors) ;
+            }
+        })
+  });
+
+$(".post_del").click(function(e){
+  e.preventDefault();
+  var url = $(this).attr("href");
+  var postContainer = $(this).parents('div.post');
+  if (confirm('Are you sure?')){
+    $.ajax({
+            url : url,
+            dataType:'json',
+            type:'DELETE',
+            success: function(data){
+              if (data.retCode){
+                postContainer.slideUp('slow', function() {$(this).remove();});
+              }
+              else
+               return notify("failure","caozuo shibai ") ;
+            }
+        })
+  }
+});
+
+$(".site_del").click(function(e){
+  e.preventDefault();
+  var url = $(this).attr("href");
+  var siteItem = $(this).parents('tr');
+  if (confirm('Are you sure?')){
+    $.ajax({
+            url : url,
+            dataType:'json',
+            type:'DELETE',
+            success: function(data){
+              if (data.retCode){
+                siteItem.remove();
+              }
+              else
+               return notify("failure","caozuo shibai ") ;
+            }
+        })
+  }
+});
+
+$(".user_del").click(function(e){
+  e.preventDefault();
+  var url = $(this).attr("href");
+  var userItem = $(this).parents('tr');
+  if (confirm('Are you sure?')){
+    $.ajax({
+            url : url,
+            dataType:'json',
+            type:'DELETE',
+            success: function(data){
+              if (data.retCode){
+                userItem.remove();
+              }
+              else
+               return notify("failure","caozuo shibai ");
+            }
+        })
+  }
+});
+
+$(".cate_del").click(function(e){
+  e.preventDefault();
+  var url = $(this).attr("href");
+  var cateItem = $(this).parents('tr');
+  if (confirm('Are you sure?')){
+    $.ajax({
+            url : url,
+            dataType:'json',
+            type:'DELETE',
+            success: function(data){
+              if (data.retCode){
+                cateItem.remove();
+              }
+              else
+               return notify("failure","caozuo shibai ");
+            }
+        })
+  }
+});
+// $("#site_link").click(function(){
+//   $(this).hide();
+//   $("#site_form").replaceWith(sitePl());
+// });
+
+// var sitePl = function(){
+//  return ['<p><a id="site_link" href="#">普通模式发布</a></p>',
+//  '<form method="post" id="new_site_form" action="/sites/add_by_md" accept-charset="UTF-8">',
+//  '<input type="text" placeholder="Markdown 格式发布：[name](link)" name="sites" id="sites" class="input-xxlarge">', 
+// '<input type="text" size="30" placeholder="Please input cateory!" name="site[name]" id="site_name">',
+// '<input type="text" size="30" placeholder="Please input cateory!" name="site[url]" id="site_url">',
+// '<p><input type="submit" value="Add Site" name="commit" class="btn">',
+//   '</p>',
+// '</form>'
+//  ].join("");
+// };
+ //  $(".post_del").click(function() {
+ //    // $('#load').fadeIn();
+ //    var commentContainer = $(this).parent();
+ //    var id = $(this).attr("id");
+ //    var string = 'id='+ id ;
+      
+ //    $.ajax({
+ //       type: "POST",
+ //       url: "delete.php",
+ //       data: string,
+ //       cache: false,
+ //       success: function(){
+ //      commentContainer.slideUp('slow', function() {$(this).remove();});
+ //      $('#load').fadeOut();
+ //      }
+ //   }
+ // });
+});
 

@@ -1,9 +1,9 @@
 # encoding:utf-8
 class PostsController < ApplicationController
   before_filter :signed_in_user,:only=>[:create,:destroy,:post_tweet]
+
   def new
     @post = Post.new
-    #render :layout=>'post'
   end
 
   def index
@@ -17,11 +17,13 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(params[:post])
     @post.user_id = current_user.id
-    if @post.save
-      @post.update_tags(params[:tags])
-      redirect_to posts_url
-    else
-      render action: "new"
+    respond_to do |format|
+      if @post.save
+        @post.update_tags(params[:tags])
+        format.json {render :json=>{:retCode=>1,:msg=>"success!"}}
+      else
+        render action: "new"
+      end
     end
   end
 
@@ -43,10 +45,7 @@ class PostsController < ApplicationController
     respond_to do |format|
       if post.save
         post.update_tags(params[:tags])
-        # redirect_to posts_url
-        # format.json {render :json => {re} }
         format.json { render :json=>{:retCode=>1,:item => post.to_j(post_options)} } 
-        #render :json=>{:retCode=>1,:item => post.to_j(post_options)}
       else
         # flash.now.alert = post.erros
         render action: "new"
@@ -60,9 +59,14 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
-    @post.destroy
-    redirect_to posts_url
+    @post = Post.find_by_id(params[:id])
+    respond_to do |format|
+      if @post.destroy
+        format.json { render_json_ok } 
+      else
+        format.json { render_json_fail } 
+      end
+    end
   end
 
   def date_posts

@@ -1,6 +1,6 @@
 <% provide(:title, '创建新博客') %>
 <div class="span8">
-  <%= form_for(@post,:html => { :class => "form-horizontal" }) do |f| %>
+  <%= form_for(@post,:html => { :class => "form-horizontal" ,:id=>"new_post_form"}) do |f| %>
     <%= render 'shared/post_errors' %>
     <div class="control-group">
       <%=f.text_field :title,:placeholder=>"博客标题", :class=>"input-xlarge" %> 

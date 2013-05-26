@@ -21,5 +21,12 @@ class ApplicationController < ActionController::Base
       redirect_to signin_path, notice: "Please sigin in"
   	end
   end
+  
+  def render_json_ok
+    render :json => {:retCode => 1}
+  end
 
+  def render_json_fail
+    render :json => {:retCode => 1}
+  end
 end

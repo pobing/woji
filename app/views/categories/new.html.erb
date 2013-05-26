@@ -1,16 +1,2 @@
 <% provide(:title, 'Category') %>
-<div class="span8 ">
-  <%= form_for(@category,:html => { :class => "form-horizontal" }) do |f| %>
-    <div class="controls"><h3>add new</h3></div>
-  
-    <div class="control-group">
-    <%= f.label :name ,class:"control-label"%>
-    <div class="controls"><%= f.text_field :name,:placeholder =>"Please input cateory!" %></div>
-  </div>
-
-  <div class="controls">
-    <%= f.submit "create", class: "btn btn-primary" %>
-  </div>
-  <% end %>
-</div>
-<%= ueditor_text_tag 'test2', 'text here'%>
+<%=render 'form'%>

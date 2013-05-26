@@ -1,4 +1,6 @@
-<p><i class="icon-plus"></i> <%= link_to '添加新用户', new_user_path %></p>
+<!-- Button to trigger modal -->
+<p><a href="#newUserModal" role="button" class="btn" data-toggle="modal">添加新用户</a></p>
+<%=render 'manage/users/new'%>
 <table class="table table-condensed">
   <tr>
     <th>login</th>
@@ -21,30 +23,8 @@
     <td><%= user.sex_name %></td>
     <td><%= link_to icon_opt('icon-pencil'), edit_user_path(user),{ :title => "编辑用户" } %></td>
     <td><%= link_to icon_opt('icon-lock'), edit_user_path(user),{ :title => "修改密码" } %></td>
-<!--     <td>
-<a href="#" onclick="deluser(<%=user.id %>); return false;">xx</a>
-    </td> -->
-    <td><%= link_to icon_opt('icon-trash'), user, confirm: 'Are you sure?', :title => "删除用户",  method: :delete, :remote => true %></td>
+    <td><%= link_to icon_opt('icon-trash'), user, :title => "删除用户",:class=>"user_del" %></td>
   </tr>
 <% end %>
 </table>
-<script type="text/javascript">
- // function deluser(id){
- //    $.ajax({
- //      type: "DELETE",
- //      dataType:'json',
- //      url: "/users/" + id,
- //      success: function(data){
- //          if (data.retCode == 1){
- //            var _cls = ".id_" + id;
- //            $(_cls).parents("tr").remove();
- //            notify("success",data.msg) ;
- //          }else{
- //            return notify("failure",data.errors) ; 
- //          }
- //      }
- //    });
- //  }
-</script>
-
 <%= javascript_include_tag "user" %>  

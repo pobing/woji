@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     if @user.save
       sign_in @user
       flash[:success] = "Welcome to the Woji App!"
-      redirect_to @user
+      redirect_to root_path
     else
       render 'new'
     end
@@ -56,10 +56,9 @@ class UsersController < ApplicationController
   def destroy
     respond_to do |format|
       if @user.destroy
-        format.js
-        format.json { render :json=>{:retCode=>1,:msg => "update success!"}}
+        format.json { render_json_ok }
       else
-        format.json { render :json=>{:retCode=>0,:errors => "update fail!"}}
+        format.json { render_json_fail }
       end
     end
   end

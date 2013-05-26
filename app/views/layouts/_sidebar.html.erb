@@ -1,35 +1,35 @@
-<h3>站内搜索</h3>
+<h4>站内搜索</h4>
   <%= form_tag("",:class=>"form-search", :method => "get") do %>
   <div class="input-append"><%= text_field_tag(:q,"",:class=>"span2 search-query") %>
   <%= submit_tag("搜索",:class=>"btn") %></div>
 <% end %>
 
-<h3>最新记录</h3>
+<h4>最新记录</h4>
 <ul>
   <% recently_posts.each do |r| %>
     <li><%=link_to r.title.slice(0..30) , r,:title=>r.title %> </li>
   <%end%>
 </ul>
 
-<h3>Category</h3>
+<h4>Category</h4>
   <ul>
     <% categories.each do |r| %>
       <li><%=link_to r.name, posts_path(:type=>r.id) %> (<%= r.posts_count %>)</li>
     <%end%>
   </ul>
-<h3>Tags</h3>
+<h4>Tags</h4>
   <div id="tag_cloud">
    <% tag_cloud get_tags, %w[s m l] do |tag, css_class| %>
      <%= link_to tag.name, "/posts/tag_posts?name=#{tag.name}", class: css_class,:title=>"#{tag.taggings_count}" %>
    <% end %>
   </div>
-<h3>Sites</h3>
+<h4>Sites</h4>
   <ul>
   <% sites.each do |s| %>
       <li><%=link_to s.name.slice(0..30), s.url, :target => "_blank" ,:title=>s.name  %></li>
   <%end%>
   </ul>
-<h3>文章统计</h3>
+<h4>文章统计</h4>
   <div>
     <p>总共: <%=get_counts[:all_count]%> 篇 </p>
     <p>说说: <%=get_counts[:tweet_count]%> 条 </p>

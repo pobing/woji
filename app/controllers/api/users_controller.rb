@@ -1,6 +1,20 @@
 # encoding:utf-8
 class Api::UsersController < ApplicationController
   before_filter :signed_in_user, :only=>[:update_pwd,:update_avatar]
+  
+  def create
+    Rails.logger.debug "debug params #{params}"
+    @user = User.new(params[:user])
+    @user.password_confirmation = @user.password
+    if @user.save
+      # sign_in @user
+      # flash[:success] = "Welcome to the Woji App!"
+      redirect_to users_path
+      # render
+    else
+      render 'new'
+    end
+  end
 
   def update_pwd
   	user = User.find_by_id(params[:id])

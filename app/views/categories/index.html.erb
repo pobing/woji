@@ -1,4 +1,4 @@
-<%= link_to 'New Category', new_category_path %></p>
+<%= link_to icon_opt('icon-plus'), new_category_path,"title"=>"new category" %></p>
 <table class="table">
   <tr>
     <th>Name</th>
@@ -9,8 +9,8 @@
 <% @categories.each do |category| %>
   <tr>
     <td><%= category.name %></td>
-    <td><%= link_to 'Edit', edit_category_path(category) %></td>
-    <td><%= link_to 'Destroy', category, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to icon_opt('icon-pencil'), edit_category_path(category), :title=>"edit" %></td>
+    <td><%= link_to icon_opt('icon-trash'), category, :class=>"cate_del",:title=>"destroy" %></td>
   </tr>
 <% end %>
 </table>

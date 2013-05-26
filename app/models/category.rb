@@ -1,6 +1,7 @@
 class Category < ActiveRecord::Base
   attr_accessible :category_id, :name
-  has_many :posts,:foreign_key =>:item_type 
+  has_many :posts,:foreign_key =>:item_type
+  has_many :sites 
   after_save :generate_category_id
   
   private

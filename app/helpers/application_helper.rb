@@ -74,7 +74,7 @@ module ApplicationHelper
           :strikethrough =>true
         }
       markdown = Redcarpet::Markdown.new(HTMLwithCodeRay,options)
-      markdown.render(text).html_safe
+      markdown.render(text).html_safe if text
   end
 
   class HTMLwithCodeRay < Redcarpet::Render::HTML
