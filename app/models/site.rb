@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Site < ActiveRecord::Base
   attr_accessible :category_id, :name, :url
   belongs_to :category #,:foreign_key=>:item_type

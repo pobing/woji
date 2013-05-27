@@ -2,7 +2,7 @@
 class SitesController < ApplicationController
   layout 'manage'
 
-  before_filter :set_user ,:only=>[:edit,:update,:destroy]
+  before_filter :set_site ,:only=>[:edit,:update,:destroy]
 
   def index
     @sites = Site.all
