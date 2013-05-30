@@ -5,6 +5,11 @@
 	  <%=image_tag(current_user.thumb_avatar,:id=>'img_thumb') %>
 	  <%=image_tag(current_user.small_avatar,:id=>'small_thumb') %>
   </div>
+  <% unless current_user.avatar_url.nil?%>
+	  <div class="controls"><%=link_to "remove avatar","/users/#{current_user.try(:id)}/remove_avatar",:confirm=>"Are you sure",method: :post%>  <%=link_to "download avatar","/users/#{current_user.try(:id)}/download_avatar"%>
+	  </div>
+  <%end%>
+
 </div>
 <div class="controls">
    <%=file_field_tag "avatar" %>

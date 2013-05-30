@@ -11,6 +11,8 @@ Woji::Application.routes.draw do
   resources :users do
     member{
       post  :update_avatar
+      post :remove_avatar
+      get :download_avatar
         }
   end
   resources :files

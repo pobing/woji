@@ -53,6 +53,25 @@ class UsersController < ApplicationController
     end
   end
 
+  
+  def remove_avatar
+    user = User.find_by_id(params[:id])
+    user.remove_avatar!
+    if user.save!
+      flash[:success] ="remove success!"
+      render 'edit'
+    else
+      flash.now.alert = "upload failure"
+      render 'edit'
+    end
+  end
+
+  def download_avatar
+    user = User.find_by_id(params[:id])
+    path = "#{Rails.root}/public"+user.avatar_url(:original)
+    send_file path , :filename=> user.avatar.filename
+  end
+
   def destroy
     respond_to do |format|
       if @user.destroy
