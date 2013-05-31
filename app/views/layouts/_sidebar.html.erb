@@ -1,3 +1,8 @@
+<h4>About</h4>
+<%=link_to "Twitter","https://twitter.com/cn_dong",:target=>"_blank" %>
+<%=link_to "Facebook","http://www.facebook.com/cn.jdong",:target=>"_blank" %>
+<%#=link_to "weibo","http://www.weibo.com/jido",:target=>"_blank" %>
+<%= mail_to "cn.jdong@gmail.com","Gmail" %>
 <h4>站内搜索</h4>
   <%= form_tag("",:class=>"form-search", :method => "get") do %>
   <div class="input-append"><%= text_field_tag(:q,"",:class=>"span2 search-query") %>
