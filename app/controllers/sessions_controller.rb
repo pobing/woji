@@ -11,10 +11,12 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       # sign_in user
       if params[:remember_me]
+        # generate_token
         cookies.permanent[:remember_token] = user.remember_token
       else
         cookies[:remember_token] = user.remember_token
       end
+      # session[:user_id] = user.id
       redirect_back_or root_url
     else
       flash.now.alert = 'Invalid email/password combination' 
@@ -23,6 +25,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    # sign_out
     session[:user_id] = nil
     redirect_to home_path
   end

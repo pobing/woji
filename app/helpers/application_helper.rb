@@ -1,8 +1,9 @@
 #coding:utf-8
 module ApplicationHelper
   include TruncateHtmlHelper
+
   def get_tags
-  	Tag.where("taggings_count >0",0)
+  	Tag.where("taggings_count >?",0)
   end
 
   def get_counts
@@ -93,7 +94,6 @@ module ApplicationHelper
         index = tag.taggings_count.to_f / max.taggings_count * (classes.size - 1)
         yield(tag, classes[index.round])
       end
-
     end
   end
   
@@ -116,5 +116,5 @@ module ApplicationHelper
   def site_name
     "woji"
   end
-
+  
 end
