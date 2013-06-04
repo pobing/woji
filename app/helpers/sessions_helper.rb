@@ -3,30 +3,28 @@ module SessionsHelper
   def sign_in(user)
     cookies.permanent[:remember_token] = user.remember_token
     # cookies[:login] = { :value => "XJ-122", :expires => 1.hour.from_now }
-    Rails.logger.debug "debug ===== #{user}"
-    # cookies[:remember_token] = user.remember_token
+    if params[:remember_me]
+      cookies.permanent[:remember_token] = user.remember_token
+    else
+      cookies[:remember_token] = user.remember_token
+    end
     self.current_user = user
-    # session[:user_id] = user.id
   end
 
   def signed_in?
     !current_user.nil?
-    # !session[:user_id].nil?
   end
 
   def current_user=(user)
-    Rails.logger.debug "1111111"
     @current_user = user
   end
 
   def current_user
-    Rails.logger.debug "2222"
     @current_user ||= User.find_by_remember_token(cookies[:remember_token]) if cookies[:remember_token]
   end
 
   def sign_out
-    # self.current_user = nil
-    session[:user_id] = nil
+    self.current_user = nil
     cookies.delete(:remember_token)
   end
   
