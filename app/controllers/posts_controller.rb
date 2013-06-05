@@ -100,6 +100,7 @@ class PostsController < ApplicationController
   end
 
   protected
+  
   def post_options
     {:only => [:content,:author,:comments_count,:date,:created_at,:type,:tags]}
   end

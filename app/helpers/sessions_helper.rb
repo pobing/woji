@@ -3,7 +3,7 @@ module SessionsHelper
   def sign_in(user)
     cookies.permanent[:remember_token] = user.remember_token
     # cookies[:login] = { :value => "XJ-122", :expires => 1.hour.from_now }
-    if params[:remember_me]
+    if params[:session][:remember]
       cookies.permanent[:remember_token] = user.remember_token
     else
       cookies[:remember_token] = user.remember_token

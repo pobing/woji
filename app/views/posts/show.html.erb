@@ -4,16 +4,6 @@
     <h3><%= @post.title %></h3>
       <%= gravatar_for @post.user %> <span class="author"><%=link_to @post.author,@post.user %></span><br>Posted on <%=link_to time_local(@post.created_at),"/posts/date_posts?date=#{@post.created_at}" %>
   </header>
-<!--   <ul class="thumbnails">
-    <li class="span3">
-    <a href="#" class="thumbnail">
-    <img src="#" alt="">
-    </a>
-    </li>
-    sss
-    <br>
-    ss
-    </ul> -->
 	<p><%=raw @post.html %></p>
 	<p> Post in :<%=link_to @post.type_s, posts_path(:type=>@post.item_type) %> 
           <%unless @post.tags.empty? %>
