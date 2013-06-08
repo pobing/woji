@@ -31,6 +31,7 @@ rake db:admin #console will inputs account & password
 ```
 ## Demo
 [https://wojibeta.herokuapp.com/](https://wojibeta.herokuapp.com/)
-
-Enjoy!
+## 测试帐号
+<p> login: test password: 123456 </p>
+Enjoy :) 
  --jdd 2013-3
