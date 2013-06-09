@@ -34,6 +34,7 @@ Woji::Application.routes.draw do
         get 'date_posts'
         get 'archives'
         get 'tag_posts'
+        get 'search'
       end
   end
   resources :categories 

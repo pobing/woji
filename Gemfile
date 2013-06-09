@@ -20,6 +20,8 @@ gem "mini_magick", "~> 3.5.0"
 #gem "flickr.rb", "~> 1.1.0"
 #gem install xml-simple flickr
 #
+gem 'thinking-sphinx'
+
 gem 'ueditor_rails'#, :git => 'https://github.com/jasl/ueditor_rails.git'
 group :development do
   gem 'annotate', '2.5.0'

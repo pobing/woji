@@ -96,6 +96,16 @@ class Post < ActiveRecord::Base
     self.category.try(:name) || "动态"
   end
 
+
+  define_index do
+    indexes content
+    indexes :title, sortable: true
+    indexes comments.content, as: :comment_content
+    indexes [user.name, user.email], as: :author_name
+    
+    #has author_id, published_at
+  end
+
   def to_j(options={})
     h = { id: id, title: title, category:category_name,}
     default = h

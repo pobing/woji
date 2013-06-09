@@ -99,6 +99,10 @@ class PostsController < ApplicationController
     end
   end
 
+  def search
+    @posts = Post.search(params[:search])
+  end
+
   protected
   
   def post_options
