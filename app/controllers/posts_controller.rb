@@ -58,6 +58,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find_by_id(params[:id])
+    Post.update_counters @post.id, :visited_count => 1
     redirect_to posts_url if @post.nil?
   end
 
@@ -110,7 +111,7 @@ class PostsController < ApplicationController
   protected
   
   def post_options
-    {:only => [:content,:author,:comments_count,:date,:created_at,:type,:tags]}
+    {:only => [:content,:author,:visited_count,:comments_count,:date,:created_at,:type,:tags]}
   end
 
   # def user_options

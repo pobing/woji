@@ -20,6 +20,7 @@
            | <%= link_to '删除', post ,:class=>'post_del'%> 
           <%end%>
          | 评论 <%= post.comments_count || 0 %> 
+         | 阅读 <%= post.visited_count %>
         </p>
         <!-- <p>分享</p> -->
         <hr>

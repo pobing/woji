@@ -118,6 +118,7 @@ class Post < ActiveRecord::Base
     if options.try(:[],:only)
       only = options[:only]
       h.merge!({ comments_count: comments_count || 0 }) if only.index(:comments_count)
+      h.merge!({ visited_count: visited_count }) if only.index(:visited_count)
       h.merge!({ author: self.user.to_j({:only=>[:full_name]}) }) if only.index(:author)
       h.merge!({ content: summary }) if only.index(:content)
       h.merge!({ date: time_local(created_at) }) if only.index(:date)

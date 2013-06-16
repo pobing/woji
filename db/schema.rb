@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130526022736) do
+ActiveRecord::Schema.define(:version => 20130616032750) do
 
   create_table "categories", :force => true do |t|
     t.integer  "category_id"
@@ -44,6 +44,12 @@ ActiveRecord::Schema.define(:version => 20130526022736) do
     t.datetime "updated_at",     :null => false
   end
 
+  create_table "hs", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "likes", :force => true do |t|
     t.string   "commenter"
     t.text     "body"
@@ -58,10 +64,11 @@ ActiveRecord::Schema.define(:version => 20130526022736) do
     t.string   "title"
     t.integer  "item_type"
     t.text     "content"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.integer  "user_id"
     t.integer  "comments_count"
+    t.integer  "visited_count",  :default => 0
   end
 
   create_table "sites", :force => true do |t|
@@ -107,6 +114,7 @@ ActiveRecord::Schema.define(:version => 20130526022736) do
     t.string   "website"
     t.string   "active_token"
     t.string   "avatar"
+    t.integer  "avatar_id"
   end
 
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"

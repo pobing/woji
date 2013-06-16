@@ -30,6 +30,7 @@ $(function(){
           ' | <a href="/posts/'+_data.id,
           '",class="post_del">删除</a> ',
           ' | 评论 '+_data.comments_count,
+          ' | 阅读 '+ _data.visited_count,
            '</p>',
         // '<p>分享</p>',
         '</div>'
