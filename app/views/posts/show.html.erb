@@ -2,7 +2,9 @@
 <div class="span7">
   <header class="clearfix">
     <h3><%= @post.title %></h3>
-      <%= gravatar_for @post.user %> <span class="author"><%=link_to @post.author,@post.user %></span><br>Posted on <%=link_to time_local(@post.created_at),"/posts/date_posts?date=#{@post.created_at}" %>
+      <%#= gravatar_for @post.user %>
+      <%=link_to (image_tag(@post.user.small_avatar)),@post.user %>
+       <span class="author"><%=link_to @post.author,@post.user %></span><br>Posted on <%=link_to time_local(@post.created_at),"/posts/date_posts?date=#{@post.created_at}" %>
   </header>
 	<p><%=raw @post.html %></p>
 	<p> Post in :<%=link_to @post.type_s, posts_path(:type=>@post.item_type) %> 

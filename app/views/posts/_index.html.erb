@@ -1,10 +1,10 @@
 <div class="span7 posts">
     <% @posts.each do |post|  %> 
  <div class="post">
-  <h3><%=link_to post.title,post%></h3>
+  <h3><%=link_to strip_tags(post.title),post%></h3>
       <p>Posted on <%=link_to time_local(post.created_at),"/posts/date_posts?date=#{post.created_at}" %> | by <%=link_to post.author,post.user %>
       </p>
-         <p><%=raw post.summary %></p>
+      <p><%= post.summary %></p>
          <% if post.summary.length > 200 %>
           <p><%= link_to "阅读全文",post %></p>
          <% end %>

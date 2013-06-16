@@ -16,6 +16,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(params[:post])
+    @post.content= params[:content]
     @post.user_id = current_user.id
     respond_to do |format|
       if @post.save
@@ -34,6 +35,8 @@ class PostsController < ApplicationController
     post = Post.create attr
     respond_to do |format|
       if post
+       tags = post.content.scan(/#(.*?)#/).flatten.uniq
+       post.update_tags(tags)
        format.json { render :json=>{:retCode=>1,:item => post.to_j(post_options)} } 
       end
     end
@@ -90,6 +93,7 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
+    logger.debug "debug #{params}"
     if @post.update_attributes(params[:post])
       @post.update_tags(params[:tags])
       flash[:success] = "update success!"

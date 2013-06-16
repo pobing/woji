@@ -90,11 +90,21 @@ $('#blog_form').on('submit', function(event){
 
   $('#new_post_form').on('submit', function(event){
        event.preventDefault();
+       var values = $("#new_post_form").serializeArray();
+       var content_val = UE.getEditor('post_content').getContent();
+        values.push({
+            name: "content",
+            value: content_val
+        });
+
+        values = jQuery.param(values);
+
         $.ajax({
             url : $(this).prop('action'),
             dataType:'json',
             type:'POST',
-            data: $('#new_post_form').serializeArray(),
+            // data: $('#new_post_form').serializeArray(),
+            data:values,
             success: function(data){
               if (data.retCode == 1){
                 $('#new_post_form')[0].reset();

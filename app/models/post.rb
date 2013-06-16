@@ -32,7 +32,7 @@ class Post < ActiveRecord::Base
   end
 
   def self.tweet_title(str)
-    str.slice(0..12)
+    str.split(' ')[0].gsub(/#/,"") 
   end
 
   def self.recently_posts
@@ -54,7 +54,9 @@ class Post < ActiveRecord::Base
   end
 
   def update_tags(tags)
-    tags.split(',').each do |t| 
+    # '[tag1,tag2]' or 'tag1,tag2'
+    tag_list = tags.class == String ? tags.split(',') : tags 
+    tag_list.each do |t| 
       tag = Tag.find_by_name(t)
       tag = Tag.create({name: t }) if tag.nil?
       unless Tagging.exists?(post_id:self.id, tag_id: tag.id)
@@ -63,7 +65,7 @@ class Post < ActiveRecord::Base
     end
     self.save
   end 
-
+  
   def tag_list
     self.tags.map(&:name).join(",")
   end
@@ -73,7 +75,11 @@ class Post < ActiveRecord::Base
   end
 
   def html
-    markdown(self.content)
+    content = self.content.gsub(/#.*?#/) do |tag|
+    tag_name = tag.gsub(/#/,"")
+      %Q(<a href="/posts/tag_posts?name=#{tag_name}">#{tag}</a>)
+    end
+    markdown(content)
   end
 
   def summary
