@@ -44,12 +44,6 @@ ActiveRecord::Schema.define(:version => 20130616032750) do
     t.datetime "updated_at",     :null => false
   end
 
-  create_table "hs", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "likes", :force => true do |t|
     t.string   "commenter"
     t.text     "body"
@@ -114,7 +108,6 @@ ActiveRecord::Schema.define(:version => 20130616032750) do
     t.string   "website"
     t.string   "active_token"
     t.string   "avatar"
-    t.integer  "avatar_id"
   end
 
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
