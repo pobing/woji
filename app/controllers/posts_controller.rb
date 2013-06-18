@@ -12,6 +12,10 @@ class PostsController < ApplicationController
       else
         Post.paginate(page: params[:page])
       end
+    respond_to do |format|
+      format.html
+      format.atom
+    end
   end
 
   def create
@@ -58,7 +62,9 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find_by_id(params[:id])
-    Post.update_counters @post.id, :visited_count => 1
+    if @post
+      Post.update_counters @post.id, :visited_count => 1
+    end
     redirect_to posts_url if @post.nil?
   end
 
@@ -106,6 +112,14 @@ class PostsController < ApplicationController
 
   def search
     @posts = Post.search(params[:search])
+  end
+  
+  def post_atom
+    @post = Post.find(params[:id])
+    respond_to do |format|
+      format.atom
+      format.xml {render :xml=> @post} 
+    end
   end
 
   protected

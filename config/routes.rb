@@ -24,9 +24,9 @@ Woji::Application.routes.draw do
     end
   end
   resources :posts do
-    # member do
-    #  post 'post_message' 
-    # end
+    member do
+     get 'post_atom' 
+    end
     resources :comments
     collection do
         post 'post_tweet'
