@@ -114,13 +114,13 @@ class PostsController < ApplicationController
     @posts = Post.search(params[:search])
   end
   
-  def post_atom
-    @post = Post.find(params[:id])
-    respond_to do |format|
-      format.atom
-      format.xml {render :xml=> @post} 
-    end
-  end
+#  def post_atom
+#   @post = Post.find(params[:id])
+#  respond_to do |format|
+#   format.atom
+#  format.xml {render :xml=> @post} 
+# end
+# end
 
   protected
   
