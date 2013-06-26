@@ -25,6 +25,11 @@ module ApplicationHelper
     Site.all
   end
 
+  def archive_month
+    Post.find(:all, :order => "created_at DESC").group_by { |post| post.created_at.strftime("%B %Y")}
+  end
+
+
   def time_local(time)
     time.strftime("%Y年%m月%d日")
   end

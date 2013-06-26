@@ -21,10 +21,16 @@
 
 <h4>Category</h4>
   <ul>
-    <% categories.each do |r| %>
-      <li><%=link_to r.name, posts_path(:type=>r.id) %> (<%= r.posts_count %>)</li>
+    <% categories.each do |c| %>
+      <li><%=link_to c.name, posts_path(:type=>c.id) %> (<%= c.posts_count %>)</li>
     <%end%>
   </ul>
+<h4>Archives</h4>
+<ul>
+  <%archive_month.each do |m,p|%>
+    <li><%=link_to m,"#" %> (<%= p.count%>)</li>
+  <%end%>
+</ul>
 <h4>Tags</h4>
   <div id="tag_cloud">
    <% tag_cloud get_tags, %w[s m l] do |tag, css_class| %>
