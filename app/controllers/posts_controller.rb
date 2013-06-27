@@ -113,14 +113,12 @@ class PostsController < ApplicationController
   def search
     @posts = Post.search(params[:search])
   end
+
+  def month_posts
+    @posts = Post.search(params[:search])
+  end
   
-#  def post_atom
-#   @post = Post.find(params[:id])
-#  respond_to do |format|
-#   format.atom
-#  format.xml {render :xml=> @post} 
-# end
-# end
+
 
   protected
   
