@@ -26,7 +26,7 @@ module ApplicationHelper
   end
 
   def archive_month
-    Post.find(:all, :order => "created_at DESC").group_by { |post| post.created_at.strftime("%B %Y")}
+    Post.find(:all, :order => "created_at DESC").group_by { |post| post.created_at.strftime("%Y-%m")}
   end
 
 
@@ -35,7 +35,7 @@ module ApplicationHelper
   end
 
   def string_time(time)
-    time.strftime("%Y-%m-%d")
+    time.strftime("%Y-%m-%d %H:%M:%S")
   end
     # 精彩（nice）时间格式化
   # def status_time_ago_in_words(dt)

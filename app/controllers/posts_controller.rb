@@ -90,6 +90,13 @@ class PostsController < ApplicationController
     @posts_by_month = Post.find(:all, :order => "created_at DESC").group_by { |post| post.created_at.strftime("%B %Y")}
   end
   
+  def month
+    m = params[:m] + "-01"
+    m = m.to_time
+    logger.info "debug #{m}"
+    @posts = Post.where(:created_at => (m.at_beginning_of_month .. m.at_end_of_month)).paginate(page: params[:page])
+  end
+
   def tag_posts
     @posts = Post.tag_with(params[:name])
   end

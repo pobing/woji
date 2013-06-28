@@ -28,7 +28,7 @@
 <h4>Archives</h4>
 <ul>
   <%archive_month.each do |m,p|%>
-    <li><%=link_to m,"#" %> (<%= p.count%>)</li>
+    <li><%=link_to m,"/posts/month?m=#{m}" %> (<%= p.count%>)</li>
   <%end%>
 </ul>
 <h4>Tags</h4>
