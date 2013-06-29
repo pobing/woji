@@ -3,10 +3,11 @@
   <header class="clearfix">
     <h3><%= @post.title %></h3>
       <%#= gravatar_for @post.user %>
-      <%=link_to (image_tag(@post.user.small_avatar)),@post.user %>
+      <%=link_to (image_tag(@post.user.try(:small_avatar))),@post.user %>
        <span class="author"><%=link_to @post.author,@post.user %></span><br>Posted on <%=link_to time_local(@post.created_at),"/posts/date_posts?date=#{@post.created_at}" %>
   </header>
-	<p><%=raw @post.html %></p>
+  
+	<%=raw @post.html %>
 	<p> Post in :<%=link_to @post.type_s, posts_path(:type=>@post.item_type) %> 
           <%unless @post.tags.empty? %>
            | Tagged:<% @post.tags.each do |t| %>
@@ -18,7 +19,7 @@
            | <%= link_to '删除', @post, confirm: 'Are you sure?', method: :delete %> 
           <%end%>
 	</p>
-
+ <%= render 'shared/share_button'%></br>
     <p class="copr">
 
        本站文章除注明转载外，均为作者原创或编译 </br>
@@ -26,6 +27,7 @@
        转载请注明：文章转载自：<%=link_to site_name,root_url %> </br>
        原文链接地址：<%=link_to @post.title,request.url %>
     </p>
+   
     <p>
     <% unless @post.previous_post.nil? %>
         上一篇: <%=link_to @post.previous_post.title, @post.previous_post %>
