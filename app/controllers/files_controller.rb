@@ -1,7 +1,6 @@
 # encoding:utf-8
 class FilesController < ApplicationController
 	def create
-		Rails.logger.debug "debug #{params}"
 		uploader = Uploader.new
 		uploader.store!(params[:file]) if params[:file]
 		disk_file = DiskFile.new
