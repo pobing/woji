@@ -20,7 +20,6 @@ module SessionsHelper
   end
 
   def current_user
-    # @current_user ||= User.find_by_remember_token(cookies[:remember_token]) if cookies[:remember_token]
       @current_user ||= (login_from_session || login_from_cookie) unless @current_user == false
   end
   
