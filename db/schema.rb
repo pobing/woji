@@ -11,14 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130707022858) do
+ActiveRecord::Schema.define(:version => 20130707063841) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
-    t.string   "uid"
+    t.integer  "uid",        :limit => 8
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
   end
 
   create_table "categories", :force => true do |t|
@@ -107,8 +107,6 @@ ActiveRecord::Schema.define(:version => 20130707022858) do
     t.string   "nick_name"
     t.string   "email"
     t.string   "phone"
-    t.integer  "avatat_id"
-    t.string   "hashed_password"
     t.string   "salt"
     t.integer  "sex"
     t.datetime "created_at",                            :null => false
@@ -123,6 +121,7 @@ ActiveRecord::Schema.define(:version => 20130707022858) do
     t.string   "active_token"
     t.string   "avatar"
     t.integer  "avatar_id"
+    t.string   "auth_avatar"
   end
 
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
