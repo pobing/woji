@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/blankyao/omniauth-qq.git
+  revision: dc08e9161ac39ecd88263861e7fa850c4c6a68a2
+  specs:
+    omniauth-qq (0.1.0)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (~> 1.0)
+
 GEM
   remote: http://ruby.taobao.org/
   specs:
@@ -110,7 +118,6 @@ GEM
     multipart-post (1.2.0)
     mysql2 (0.3.11)
     nokogiri (1.5.9)
-    oauth (0.4.7)
     oauth2 (0.8.1)
       faraday (~> 0.8)
       httpauth (~> 0.1)
@@ -123,17 +130,9 @@ GEM
     omniauth-github (1.1.0)
       omniauth (~> 1.0)
       omniauth-oauth2 (~> 1.1)
-    omniauth-oauth (1.0.1)
-      oauth
-      omniauth (~> 1.0)
     omniauth-oauth2 (1.1.1)
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
-    omniauth-qq (0.3.0)
-      multi_json
-      omniauth (~> 1.0)
-      omniauth-oauth (~> 1.0)
-      omniauth-oauth2 (~> 1.0)
     omniauth-weibo-oauth2 (0.3.0)
       omniauth (~> 1.0)
       omniauth-oauth2 (~> 1.0)
@@ -261,7 +260,7 @@ DEPENDENCIES
   mysql2
   omniauth
   omniauth-github
-  omniauth-qq
+  omniauth-qq!
   omniauth-weibo-oauth2
   pg (= 0.14.1)
   rails (= 3.2.13)

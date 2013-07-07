@@ -4,7 +4,7 @@
     <div class="controls">
       <h2 class="form-signin-heading">Please sign in </h2>
       <p>Or New user? <%=link_to "Sign up now!", signup_path %></p>
-      <p>第三方账号登录: <%=link_to "github","/auth/github/" %> <%=link_to "weibo","/auth/weibo/" %> <%=link_to "qq","/auth/tqq/" %></p>
+      <p><%=link_to "github 帐号登录","/auth/github/" %> | <%=link_to "新浪微博帐号登录","/auth/weibo/" %></p>
     </div>
     <div class="control-group">
       <%= f.label :login ,class:"control-label"%>

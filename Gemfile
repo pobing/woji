@@ -23,7 +23,8 @@ gem "mini_magick", "~> 3.5.0"
 gem 'omniauth'
 gem 'omniauth-github'
 gem 'omniauth-weibo-oauth2'
-gem 'omniauth-qq'
+#gem 'omniauth-qq'
+# gem 'omniauth-qq',  :git => 'git://github.com/blankyao/omniauth-qq.git'
 
 gem 'thinking-sphinx'
 gem 'ueditor_rails'#, :git => 'https://github.com/jasl/ueditor_rails.git'

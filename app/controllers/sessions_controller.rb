@@ -17,11 +17,9 @@ class SessionsController < ApplicationController
     end
   end
 
-  def github_auth
-    Rails.logger.debug "debug #{auth_hash}"
+  def auth
     user = User.from_auth(auth_hash)
     if user
-      # sign_in user
       session[:user_id] = user.id
       flash[:notice] = "Welcome #{user.nick_name}"
       redirect_back_or root_url
@@ -31,9 +29,6 @@ class SessionsController < ApplicationController
     end
   end
 
-  def weibo_auth
-    Rails.logger.debug "debug #{request.env['omniauth.auth']}"
-  end
 
   def destroy
     sign_out
