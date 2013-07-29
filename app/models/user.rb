@@ -18,11 +18,12 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :password, :password_confirmation, :avatat_id, :email, :hashed_password, :login, :name, :nick_name, :phone, :salt, :sex,
-  :website, :status,:is_admin
+  attr_accessible :password, :password_confirmation,  :email, :hashed_password, :login, :name, :nick_name, :phone, :salt, :sex,
+  :website, :status,:is_admin,:auth_avatar
   has_secure_password
   has_many :posts
   has_many :comments
+  has_many :authentications
   belongs_to :disk_file , :foreign_key=>"avatar_id"
   before_save { |user| user.email= email.downcase if email}
   before_save { generate_token(:remember_token) }
@@ -37,6 +38,25 @@ class User < ActiveRecord::Base
   validates :password_confirmation , :presence =>{:message=>"确认密码不能为空"} ,:if=>:password_required?        
   validates :password , :confirmation => {:message=>"确认密码错误"} , :if => :password_required?        
   validates :password ,:length     => { :within => 6..40 ,:message=>"用户密码必须6-40个字符" } , :if => :password_required?
+
+  def self.from_auth(auth)
+    Authentication.find_by_provider_and_uid(auth[:provider],auth[:uid]).try(:user) || self.new_by_auth(auth)
+  end
+ 
+  def self.new_by_auth(auth)
+    attr = {:nick_name => auth[:info][:nickname],
+          :email => auth[:info][:email],
+          :name =>auth[:info][:name],
+          :auth_avatar =>auth[:info][:image],
+          :website => auth[:info][:urls][:Blog]}
+    user = User.new(attr)
+    user.authentications.new(:provider => auth[:provider],:uid=>auth[:uid])
+    user.save(:validate=>false)
+    user
+    # user.authentications.provider = auth[:provider]
+    # user.authentications.uid
+
+  end
 
   def send_password_reset
      generate_token(:password_reset_token)
@@ -64,15 +84,15 @@ class User < ActiveRecord::Base
   end
   
   def thumb_avatar
-    self.avatar_url(:thumb) || "#{default_avatar_dir}/thumb.png"
+   self.auth_avatar ||  self.avatar_url(:thumb) || "#{default_avatar_dir}/thumb.png"
   end
 
   def small_avatar
-    self.avatar_url(:small) || "#{default_avatar_dir}/small.png"
+    self.auth_avatar || self.avatar_url(:small) || "#{default_avatar_dir}/small.png"
   end
 
   def normal_avatar
-    self.avatar_url(:normal) || "#{default_avatar_dir}/normal.png"
+    self.auth_avatar ||  self.avatar_url(:normal) || "#{default_avatar_dir}/normal.png"
   end
 
   def to_j(options={})

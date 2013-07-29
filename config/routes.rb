@@ -4,6 +4,7 @@ Woji::Application.routes.draw do
   match '/signin', to: "sessions#new"
   match '/signout', to: "sessions#destroy"#, via: :delete
   match '/signup',  to: 'users#new'
+  match "/auth/:provider/callback", :to => 'sessions#auth'
   match 'home' => "static_pages#home"
   match 'help' => "static_pages#help"
   match 'about' => "static_pages#about"

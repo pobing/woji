@@ -1,6 +1,6 @@
-source 'https://rubygems.org'
+source 'http://ruby.taobao.org'
 gem 'rails', '3.2.13'
-gem 'bundler','1.3.4'
+gem 'bundler','1.3.5'
 gem 'sprockets', '>=2.1.3'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -19,9 +19,14 @@ gem "mini_magick", "~> 3.5.0"
 #gem "rack", "~> 1.5.2"
 #gem "flickr.rb", "~> 1.1.0"
 #gem install xml-simple flickr
-#
-gem 'thinking-sphinx'
 
+gem 'omniauth'
+gem 'omniauth-github'
+gem 'omniauth-weibo-oauth2'
+#gem 'omniauth-qq'
+# gem 'omniauth-qq',  :git => 'git://github.com/blankyao/omniauth-qq.git'
+
+gem 'thinking-sphinx'
 gem 'ueditor_rails'#, :git => 'https://github.com/jasl/ueditor_rails.git'
 group :development do
   gem 'annotate', '2.5.0'
@@ -60,13 +65,13 @@ gem 'jquery-rails'
 # gem 'jbuilder'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+ gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'
 
 # To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
+#gem 'ruby-debug19', :require => 'ruby-debug'
 group :test do
   gem "selenium-webdriver", "~> 2.31.0"
   gem 'factory_girl_rails', '4.1.0'

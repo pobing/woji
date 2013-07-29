@@ -4,7 +4,7 @@
    <!--  <h5>随身随地记你需要记的...</h5> -->
     <% if signed_in? %>
       <ul class="nav nav-pills pull-right">
-        <li><%=link_to (image_tag(current_user.small_avatar)),current_user %></li>
+        <li><%=link_to (image_tag(current_user.small_avatar,:size => "20x20")),current_user %></li>
         <li><%= link_to current_user.full_name, current_user %></li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown"

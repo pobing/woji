@@ -30,8 +30,9 @@
 rake db:admin #console will inputs account & password
 ```
 ## Demo
-[https://wojibeta.herokuapp.com/](https://wojibeta.herokuapp.com/)
+[https://woji.herokuapp.com/](https://woji.herokuapp.com/)
 ## 测试帐号
 <p> login: test password: 123456 </p>
+<p>Or login with github and weibo account</p>
 Enjoy :) 
  --jdd 2013-3
