@@ -6,7 +6,7 @@ Woji::Application.routes.draw do
   match '/signup',  to: 'users#new'
   match "/auth/:provider/callback", :to => 'sessions#auth'
   match 'home' => "static_pages#home"
-  match 'help' => "static_pages#help"
+  match 'contact' => "static_pages#contact"
   match 'about' => "static_pages#about"
   match '/manage/:action', :controller => "manage" , :as=>"manage"
   resources :users do
@@ -49,6 +49,8 @@ Woji::Application.routes.draw do
            # post  :update_avatar
         }
       end
-    end
-   root :to => 'posts#index'
+  end
+
+  resources :feedbacks, except: [:destroy]
+  root :to => 'posts#index'
 end

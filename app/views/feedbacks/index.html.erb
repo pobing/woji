@@ -1,0 +1,21 @@
+<table class="table table-condensed">
+  <tr>
+    <th>Email</th>
+    <th>Title</th>
+    <th>Content</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @feedbacks.each do |feed| %>
+  <tr id="<%= dom_id feed %>">
+    <!-- <td><span class="hidden id_<%#=feed.id%>"><%=feed.id%></span><%#= feed.login %></td> -->
+    <td><%= feed.email %></td>
+    <td><%= feed.title %></td>
+    <td><%= feed.content %></td>
+    <td><%= link_to icon_opt('icon-trash'), feed, :title => "删除",:class=>"feed_del" %></td>
+  </tr>
+<% end %>
+</table>
+<%= will_paginate %>

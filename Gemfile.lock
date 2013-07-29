@@ -1,11 +1,3 @@
-GIT
-  remote: git://github.com/blankyao/omniauth-qq.git
-  revision: dc08e9161ac39ecd88263861e7fa850c4c6a68a2
-  specs:
-    omniauth-qq (0.1.0)
-      omniauth (~> 1.0)
-      omniauth-oauth2 (~> 1.0)
-
 GEM
   remote: http://ruby.taobao.org/
   specs:
@@ -260,7 +252,6 @@ DEPENDENCIES
   mysql2
   omniauth
   omniauth-github
-  omniauth-qq!
   omniauth-weibo-oauth2
   pg (= 0.14.1)
   rails (= 3.2.13)

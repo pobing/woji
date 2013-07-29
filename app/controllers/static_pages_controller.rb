@@ -1,10 +1,11 @@
 # encoding:utf-8
 class StaticPagesController < ApplicationController
-  layout "reg"
+  layout "home"
+
   def home
   end
 
-  def help
+  def contact
   end
 
   def about

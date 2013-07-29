@@ -3,6 +3,7 @@
     <% if current_user.is_admin? %>
     <li class="nav-header">系统管理</li>
     <li><%=link_to "用户管理",users_path %></li>
+    <li><%=link_to "Feedback",feedbacks_path %></li>
     <% end %>
     <li class="nav-header">普通管理</li>
     <li><%=link_to "分类管理",categories_path %></li>

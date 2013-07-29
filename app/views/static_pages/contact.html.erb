@@ -1,0 +1,19 @@
+<% provide(:title, 'Contact') %>
+<div class="span9">
+	<h2>Contact me </h2>
+	<%= form_for(:feedback,url: feedbacks_url, :html => { :class => "form-horizontal" }) do |f| %>
+	  <div class="control-group">
+	    <%= f.email_field :email,:class=> "input-xlarge",:placeholder => 'Email...' %> *
+	  </div>
+	  <div class="control-group">
+	    <%= f.text_field :title,:class=> "input-xlarge",:placeholder => 'Title...' %> *
+	  </div>
+	  <div class="control-group">
+	    <%= f.text_area :content,:class=> "postform",:placeholder => 'Message...' %>
+	    <p class="help-block">You can use HTML tags for formatting.</p>
+	  </div>
+	  <div class="control-group">
+	    <%= f.submit "Submit",:class=>"btn btn-large" %>
+	  </div>
+	<% end %>
+</div>
