@@ -6,9 +6,11 @@
 	 <div class="archive">
 	    <ul class="archive">
 	    <% posts.each do |post| %>
-	    <li class="archive"><p class="archive-post"><%=link_to post.title, post %></p></li>
+	    <li class="archive"><p class="archive-post"><%=link_to post.title, post,:title => post.title %>
+       <span class="pull-right"><%=string_time(post.created_at)%></span>
+	    </p></li>
 	    <% end %>
 	    </ul>
 	</div>
-	<%end%>
+	<% end %>
 </div>

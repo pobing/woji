@@ -1,7 +1,7 @@
 <div class="span7 posts">
     <% @posts.each do |post|  %> 
  <div class="post">
-  <h3><%=link_to strip_tags(post.title),post%></h3>
+  <h3><%=link_to strip_tags(post.title),post,:title => post.title %></h3>
       <p>Post in: <%=link_to post.category_name, posts_path(:type=>post.item_type) %> | By <%=link_to post.author,post.user %>
       </p>
       <p><%= post.summary %></p>

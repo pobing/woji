@@ -45,6 +45,7 @@
         </ul>
       </li>
     <% else %>
+      <li class="<%= 'active' if current_page?('/posts/archives') %>"><%=link_to "归档","/posts/archives"%></li>
       <li class="<%= 'active' if current_page?(about_path) %>"><%= link_to "关于","#" %></li>
       <li class="<%= 'active' if current_page?('contact_path') %>"><%= link_to "联系","#" %></li>
       <li class="<%= 'active' if current_page?('/signin') %>"><%= link_to "登录","/signin"%></li>
