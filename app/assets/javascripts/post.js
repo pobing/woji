@@ -1,4 +1,11 @@
 $(function(){
+
+  $(document).bind("ajaxSend", function(){
+   $("#loading").show();
+ }).bind("ajaxComplete", function(){
+   $("#loading").hide();
+ });
+
  var post_html = function(_data){
   var tagEl=[];
   if (_data.tags.length > 0) {
@@ -43,6 +50,16 @@ $('#tweet_form').on('submit', function(event){
           dataType:'json',
           type:'POST',
           data: $('#tweet_form').serializeArray(),
+// beforeSend: function(){
+//      // Handle the beforeSend event
+//      $("#loading").show();
+//    },
+//    complete: function(){
+//      // Handle the complete event
+//      $("#loading").hide();
+//    }
+
+//      ,     
           success: function(data){
             if (data.retCode == 1){
               $('#tweet_form')[0].reset();
@@ -63,7 +80,7 @@ $('#blog_form').on('submit', function(event){
           success: function(data){
             if (data.retCode == 1){
               $('#blog_form')[0].reset();
-              $(".span7").prepend(post_html(data.item)).hide().fadeIn('slow');;
+              $(".span7").prepend(post_html(data.item)).hide().fadeIn('slow');
             }
             else
              return notify("failure",data.errors) ;

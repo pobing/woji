@@ -7,3 +7,10 @@
 //= require common
 //= require ./ueditor_config
 //= require post
+ 
+// $(document).bind("ajaxSend", function(){
+//    $("#loading").show();
+//  }).bind("ajaxComplete", function(){
+//    $("#loading").hide();
+//  });
+//  
