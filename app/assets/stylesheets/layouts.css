@@ -56,3 +56,8 @@
         border-bottom: 1px dotted #CCC;
         width: 250px;
       }
+
+ol, ul {
+    list-style: none ;
+    font-weight:bold;
+}

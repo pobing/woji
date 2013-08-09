@@ -1,0 +1,22 @@
+<p><%= link_to icon_opt('icon-plus'),new_admin_site_path,:title=>'new_site'%></p>
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Url</th>
+    <th>Category</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @sites.each do |site| %>
+  <tr>
+    <td><%= site.name %></td>
+    <td><%=link_to site.url,site.url, :target=>"_blank" %></td>
+    <td><%= site.cat_name %></td>
+    <td><%= link_to icon_opt('icon-pencil'), edit_admin_site_path(site) ,:title=>"edit" %></td>
+    <td><%= link_to icon_opt('icon-trash'), admin_site_path(site), :class=>"site_del",:title=>"destroy" %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= will_paginate %>

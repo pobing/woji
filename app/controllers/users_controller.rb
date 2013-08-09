@@ -2,12 +2,7 @@
 class UsersController < ApplicationController
   before_filter :logined ,:only=>[:new]
   before_filter :signed_in_user, :only=>[:edit,:update,:destroy]
-  before_filter :set_user, :except => [:index,:new,:create]
-  
-  def index
-    @users = User.all
-    render :layout => 'manage'
-  end
+  before_filter :set_user, :except => [:new,:create]
   
   def new
     @user = User.new

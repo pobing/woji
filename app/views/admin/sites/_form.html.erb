@@ -1,0 +1,22 @@
+<% provide(:title, 'new site') %>
+<div class="span7">
+  <%= form_for([:admin,@site],:html => { :class => "form-horizontal" }) do |f| %>
+    <div class="control-group">
+    <%= f.label :name ,class:"control-label"%>
+    <div class="controls"><%= f.text_field :name,:placeholder =>"woji" %></div>
+  </div>
+   <div class="control-group">
+    <%= f.label :url ,class:"control-label"%>
+    <div class="controls"><%= url_field :site, :url,:placeholder =>"http://www.woji.com" %></div>
+  </div>
+ <div class="control-group">
+    <%= f.label :category ,class:"control-label"%>
+    <div class="controls">
+    <%= select(:post,:item_type,category_array,{:prompt => '选择站点分类'},{:class =>"span3",:multiple=>"multiple"})%>
+  </div>
+</div>
+  <div class="controls">
+    <%= f.submit "create", class: "btn btn-primary" %>
+  </div>
+  <% end %>
+</div>

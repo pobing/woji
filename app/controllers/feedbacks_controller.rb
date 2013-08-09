@@ -1,11 +1,5 @@
 class FeedbacksController < ApplicationController
  before_filter :signed_in_user,:only =>[:index]
- before_filter :admin_required?, :only => [:index]
- 
-	def index
-		@feedbacks = Feedback.paginate(page: params[:page])
-		render :layout => 'manage'
-	end
   
   def new
   end

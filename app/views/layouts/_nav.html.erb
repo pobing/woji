@@ -1,12 +1,12 @@
  <div class="well sidebar-nav">
   <ul class="nav nav-list">
-    <% if current_user.is_admin? %>
+    <% if !current_user.is_admin? %>
     <li class="nav-header">系统管理</li>
-    <li><%=link_to "用户管理",users_path %></li>
-    <li><%=link_to "Feedback",feedbacks_path %></li>
+    <li><%=link_to "用户管理",admin_users_path %></li>
+    <li><%=link_to "Feedback",admin_feedbacks_path %></li>
     <% end %>
     <li class="nav-header">普通管理</li>
-    <li><%=link_to "分类管理",categories_path %></li>
-    <li><%=link_to "链接管理",sites_path %></li>
+    <li><%=link_to "分类管理",admin_categories_path %></li>
+    <li><%=link_to "链接管理",admin_sites_path %></li>
   </ul>
 </div><!--/.well -->

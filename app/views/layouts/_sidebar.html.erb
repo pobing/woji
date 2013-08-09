@@ -22,7 +22,7 @@
 <h4>Category</h4>
   <ul>
     <% categories.each do |c| %>
-      <li><%=link_to c.name, posts_path(:type=>c.id) %> (<%= c.posts_count %>)</li>
+      <li><%=link_to c.name, category_path(c.name) %> (<%= c.posts_count %>)</li>
     <%end%>
   </ul>
 <h4>Archives</h4>
@@ -34,7 +34,7 @@
 <h4>Tags</h4>
   <div id="tag_cloud">
    <% tag_cloud get_tags, %w[s m l] do |tag, css_class| %>
-     <%= link_to tag.name, "/posts/tag_posts?name=#{tag.name}", class: css_class,:title=>"#{tag.taggings_count}" %>
+     <%= link_to tag.name, tag_path(tag.name), class: css_class,:title=>"#{tag.taggings_count}" %>
    <% end %>
   </div>
 <h4>Sites</h4>

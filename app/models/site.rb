@@ -1,4 +1,16 @@
 # encoding: utf-8
+# == Schema Information
+#
+# Table name: sites
+#
+#  id          :integer          not null, primary key
+#  name        :string(255)
+#  url         :string(255)
+#  category_id :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
 class Site < ActiveRecord::Base
   attr_accessible :category_id, :name, :url
   belongs_to :category #,:foreign_key=>:item_type

@@ -9,7 +9,9 @@
         <p><%=post.content%></p>
         <p>类别:<%=link_to post.type_s, posts_path(:type=>post.item_type) %>
           <%unless post.tags.empty? %>
-            标签: <%=post.tags.map(&:name).join(",")%>
+            标签: <%post.tags.each do |tag|%>
+            <%=link_to tag.name ,tag_path(tag.name) %> &nbsp;
+            <% end %>
           <%end%>
           <% if current_user?(post.user)%>
             <%=link_to '编辑',edit_post_path(post)%>

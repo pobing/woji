@@ -3,13 +3,16 @@
 #
 # Table name: posts
 #
-#  id         :integer          not null, primary key
-#  title      :string(255)
-#  item_type  :integer
-#  content    :text
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#
+#  id             :integer          not null, primary key
+#  title          :string(255)
+#  item_type      :integer
+#  content        :text
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  user_id        :integer
+#  comments_count :integer
+#  visited_count  :integer          default(0)
+
 class Post < ActiveRecord::Base
   include ApplicationHelper
   attr_accessible :content, :item_type, :title, :tags,:user_id

@@ -1,0 +1,18 @@
+add category <%= link_to icon_opt('icon-plus'), new_admin_category_path,"title"=>"new category" %>  </p>
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @categories.each do |category| %>
+  <tr>
+    <td><%= category.name %></td>
+    <td><%= link_to icon_opt('icon-pencil'), edit_admin_category_path(category), :title=>"edit" %></td>
+    <td><%= link_to icon_opt('icon-trash'), admin_category_path(category), :class=>"cate_del",:title=>"destroy" %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= will_paginate @categories %>

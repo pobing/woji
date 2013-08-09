@@ -8,13 +8,15 @@ Woji::Application.routes.draw do
   match 'home' => "static_pages#home"
   match 'contact' => "static_pages#contact"
   match 'about' => "static_pages#about"
-  match '/manage/:action', :controller => "manage" , :as=>"manage"
+  match '/admin/' => "admin#index" , :as=>"admin"
+  match '/tags/*id' => 'tags#show', :format => false
+  match '/categories/*id' => 'categories#show', :format => false
   resources :users do
     member{
       post  :update_avatar
       post :remove_avatar
       get :download_avatar
-        }
+  }
   end
   resources :files
   resources :sessions, only: [:new, :create, :destroy]
@@ -24,6 +26,8 @@ Woji::Application.routes.draw do
       post 'add_by_md'
     end
   end
+
+  resources :tags, only:[:show]
   resources :posts do
     member do
 #     get 'post_atom' 
@@ -51,6 +55,12 @@ Woji::Application.routes.draw do
       end
   end
 
-  resources :feedbacks, except: [:destroy]
+  namespace :admin do
+    resources :categories,except:[:show]
+    resources :feedbacks, only:[:index,:show]
+    resources :sites,except:[:show]
+    resources :users
+  end
+  resources :feedbacks, only: [:new,:create]
   root :to => 'posts#index'
 end

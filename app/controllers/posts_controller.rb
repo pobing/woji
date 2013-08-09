@@ -97,9 +97,9 @@ class PostsController < ApplicationController
     @posts = Post.where(:created_at => (m.at_beginning_of_month .. m.at_end_of_month)).paginate(page: params[:page])
   end
 
-  def tag_posts
-    @posts = Post.tag_with(params[:name])
-  end
+  # def tag_posts
+  #   @posts = Post.tag_with(params[:name])
+  # end
   
   def edit
     @post = Post.find(params[:id])

@@ -1,0 +1,23 @@
+<%= form_tag("/api/users/#{current_user.try(:id)}/update_pwd", :class => "form-horizontal",:id=>"update_pwd_form") do -%>
+<div class="control-group">
+  <%=label_tag 'old_password', nil, :class => 'control-label'%>
+  <div class="controls">
+   <%=password_field_tag 'old_password'%>
+  </div>
+</div>
+<div class="control-group">
+  <%=label_tag 'password', nil, :class => 'control-label'%>
+  <div class="controls">
+   <%=password_field_tag 'password'%>
+  </div>
+</div>
+<div class="control-group">
+  <%=label_tag 'password_confirmation', nil, :class => 'control-label'%>
+  <div class="controls">
+   <%=password_field_tag 'password_confirmation'%>
+  </div>
+</div>
+  <div class="controls"><%= submit_tag 'Update Password',  :class => 'btn'%></div>
+<% end -%>
+<%= javascript_include_tag "user" %>  
+

@@ -15,10 +15,10 @@ ActiveRecord::Schema.define(:version => 20130729062307) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
-    t.string   "uid"
+    t.integer  "uid",        :limit => 8
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
   end
 
   create_table "categories", :force => true do |t|
@@ -56,6 +56,12 @@ ActiveRecord::Schema.define(:version => 20130729062307) do
     t.string   "email"
     t.string   "title"
     t.text     "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "hs", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -109,8 +115,6 @@ ActiveRecord::Schema.define(:version => 20130729062307) do
     t.string   "nick_name"
     t.string   "email"
     t.string   "phone"
-    t.integer  "avatat_id"
-    t.string   "hashed_password"
     t.string   "salt"
     t.integer  "sex"
     t.datetime "created_at",                            :null => false
@@ -124,6 +128,7 @@ ActiveRecord::Schema.define(:version => 20130729062307) do
     t.string   "website"
     t.string   "active_token"
     t.string   "avatar"
+    t.integer  "avatar_id"
     t.string   "auth_avatar"
   end
 
