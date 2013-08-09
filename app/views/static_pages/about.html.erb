@@ -6,10 +6,12 @@
 
     <h3>Around the web</h3>
     <ul>
-        <li><a href="http://woji.herokuapp.com" target="_blank">博客</a></li>
-        <li><a href="https://github.com/pobing" target="_blank">Github</a></li>
-        <li>微博 &nbsp;<a href="http://weibo.com/jido" target="_blank">@大秦IT</a></li>
-        <li>Twitter &nbsp; <a href="https://twitter.com/igniteflow" target="_blank">@cn_dong</a></li>
+        <li><%=link_to "博客","http://woji.herokuapp.com",:target=>"_blank" %></li>
+        <li><%=link_to "Github","https://github.com/pobing",:target=>"_blank" %></li>
+        <li><%=link_to "微博","http://weibo.com/jido",:target=>"_blank" %></li>
+        <li><%=link_to "Twitter","https://twitter.com/igniteflow",:target=>"_blank" %></li>
+        <li><%=mail_to "cn.jdong@gmail.com","Email"%></li>
+        <li><%=link_to "简历",resume_path,:target=>"_blank" %></li>
     </ul>
 
     <!--<h3>About this site</h3>-->
