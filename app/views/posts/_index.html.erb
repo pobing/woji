@@ -2,14 +2,14 @@
     <% @posts.each do |post|  %> 
  <div class="post">
   <h3><%=link_to strip_tags(post.title),post,:title => post.title %></h3>
-      <p>Post in: <%=link_to post.category_name, posts_path(:type=>post.item_type) %> | By <%=link_to post.author,post.user %>
+      <p>Posted on <%=string_time(post.created_at)%>   | By <%=link_to post.author,post.user %>
       </p>
       <p><%= post.summary %></p>
          <% if post.summary.length > 200 %>
-          <p><%= link_to "阅读全文",post %></p>
+          <p><%= link_to "阅读全文 →",post %></p>
          <% end %>
         <p>
-          <%=string_time(post.created_at)%> 
+          Posted in: <%=link_to post.category_name, posts_path(:type=>post.item_type) %> 
           <%unless post.tags.empty? %>
            | Tagged:<% post.tags.each do |t| %>
               <%=link_to t.name, tag_path(t.name)%>
@@ -19,8 +19,10 @@
            | <%=link_to '编辑',edit_post_path(post)%>
            | <%= link_to '删除', post ,:class=>'post_del'%> 
           <%end%>
-         | 评论 <%= post.comments_count || 0 %> 
+          <span class="pull-right">
+          评论 <%= post.comments_count || 0 %> 
          | 阅读 <%= post.visited_count %>
+       </span>
         </p>
         <hr>
       </div>
