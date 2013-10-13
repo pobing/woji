@@ -9,7 +9,8 @@
     <%= select(:post,:item_type,category_array,{:prompt => '-请选择文章分类-'},{:class =>"span3"})%>
   </div>
   <div class="control-group">
-     <%= f.ueditor_text :content , :width=>"680"%>
+     <%#= f.ueditor_text :content , :width=>"680"%>
+     <%= f.text_area :content , :class=>"post_content" %>
   </div>
     <div class="control-group">
     <input type="input" name="tags" placeholder="添加标签" class="input-xlarge" /> 多个标签以","隔开

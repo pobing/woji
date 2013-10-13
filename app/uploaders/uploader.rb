@@ -1,5 +1,7 @@
 # encoding: utf-8
 
+require 'carrierwave'
+
 class Uploader < CarrierWave::Uploader::Base
 include CarrierWave::MiniMagick
 

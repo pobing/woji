@@ -58,6 +58,10 @@
       }
 
 ol, ul {
-    list-style: none ;
-    font-weight:bold;
+  list-style: square outside none ;
+  font-weight:bold;
+}
+.post_content{
+  width: 620px;
+  height: 400px;
 }

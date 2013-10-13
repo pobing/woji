@@ -2,17 +2,14 @@
 <div class="span7">
   <header class="clearfix">
     <h3><%= @post.title %></h3>
-      <%#= gravatar_for @post.user %>
-      <%=link_to (image_tag(@post.user.try(:small_avatar))),@post.user %>
-       <span class="author"><%=link_to @post.author,@post.user %></span><br>Posted on <%=link_to time_local(@post.created_at),"/posts/date_posts?date=#{@post.created_at}" %>
-  </header>
-  
+  <p>Posted on <%=string_time(@post.created_at)%>   | By <%=link_to @post.author,@post.user %>
+      </p>
 	<%=raw @post.html %>
-	<p> Post in :<%=link_to @post.type_s, posts_path(:type=>@post.item_type) %> 
+	<p> Post in: <%=link_to @post.type_s, posts_path(:type=>@post.item_type) %> 
           <%unless @post.tags.empty? %>
            | Tagged:<% @post.tags.each do |t| %>
-              <%=link_to t.name, tag_path(t.name) %>
-              <%end%>
+              <%= link_to t.name, tag_path(t.name) %>
+              <% end %>
           <%end%>
           <% if current_user?(@post.user)%>
            | <%=link_to '编辑',edit_post_path(@post)%>
@@ -21,7 +18,6 @@
 	</p>
  <%= render 'shared/share_button'%></br>
     <p class="copr">
-
        本站文章除注明转载外，均为作者原创或编译 </br>
        欢迎任何形式的转载，但请务必注明出处，尊重他人劳动共创和谐社区 </br>
        转载请注明：文章转载自：<%=link_to site_name,root_url %> </br>

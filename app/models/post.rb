@@ -35,7 +35,7 @@ class Post < ActiveRecord::Base
   end
 
   def self.tweet_title(str)
-    str.split(' ')[0].gsub(/#/,"") 
+    str.split(' ')[0].gsub(/#/,"").slice(0..20)
   end
 
   def self.recently_posts
