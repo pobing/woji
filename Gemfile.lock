@@ -128,6 +128,7 @@ GEM
     omniauth-weibo-oauth2 (0.3.0)
       omniauth (~> 1.0)
       omniauth-oauth2 (~> 1.0)
+    pg (0.14.1)
     polyglot (0.3.3)
     pry (0.9.12)
       coderay (~> 1.0.5)
@@ -252,6 +253,7 @@ DEPENDENCIES
   omniauth
   omniauth-github
   omniauth-weibo-oauth2
+  pg (= 0.14.1)
   rails (= 3.2.13)
   redcarpet (= 2.2.2)
   rspec-rails (= 2.11.0)

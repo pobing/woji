@@ -8,7 +8,9 @@ Woji::Application.routes.draw do
   match 'home' => "static_pages#home"
   match 'contact' => "static_pages#contact"
   match 'about' => "static_pages#about"
+  match 'reader' => "static_pages#reader"
   match '/admin/' => "admin#index" , :as=>"admin"
+  match '/resume' => "resume#index", :as => "resume"
   match '/tags/*id' => 'tags#show', :format => false
   match '/categories/*id' => 'categories#show', :format => false
   resources :users do

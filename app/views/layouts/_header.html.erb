@@ -26,26 +26,24 @@
   </div>
   <ul class="nav nav-pills">
     <li class="<%= 'active' if current_page?(root_path) %>"><%= link_to "首页", root_path %>
+    <li class="<%= 'active' if current_page?(posts_path) %>"><%=link_to "文章",posts_path %></li>
+    <li class="<%= 'active' if current_page?('/posts/archives') %>"><%=link_to "归档","/posts/archives"%></li>
+    <li><a href="http://www.flickr.com/photos/cn_dong/" target="_blank">图片</a></li>
+    <li class="<%= 'active' if current_page?(reader_path) %>"><%=link_to "阅读", reader_path,:title=>"我读过的书" %></li>
+    <li><a href="http://weibo.com/jido" target="_blank">微博</a></li>
     <% if current_user %>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown"
+          href="#"> 更多<b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
       <li class="<%= 'active' if current_page?(posts_path(:type=>0)) %>"><%=link_to "说说",posts_path(:type=>0)%></li>
       <li class="<%= 'active' if current_page?(posts_path(:type=>1)) %>"><%=link_to "日记",posts_path(:type=>1)%></li>
       <li class="<%= 'active' if current_page?(posts_path(:type=>6)) %>"><%=link_to "工作",posts_path(:type=>6)%></li>
-      <li class="<%= 'active' if current_page?('/posts/archives') %>"><%=link_to "归档","/posts/archives"%></li>
-      <li><a href="http://www.flickr.com/photos/cn_dong/" target="_blank">图片</a></li>
-      <li class="<%= 'active' if current_page?(posts_path(:type=>7)) %>"><a href="http://weibo.com/jido" target="_blank">微博</a></li>
-      <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown"
-              href="#"> 更多<b class="caret"></b>
-        </a>
-        <ul class="dropdown-menu">
-          <li><%=link_to "周记",posts_path(:type=>2)%></li>
-          <li><%=link_to "月记",posts_path(:type=>3)%></li>
-          <li><%=link_to "年记",posts_path(:type=>4)%></li>
-          <li><%=link_to "自传",posts_path(:type=>5)%></li>
         </ul>
       </li>
     <% else %>
-      <li class="<%= 'active' if current_page?('/posts/archives') %>"><%=link_to "归档","/posts/archives"%></li>
+
       <li class="<%= 'active' if current_page?(about_path) %>"><%= link_to "关于",about_path %></li>
       <li class="<%= 'active' if current_page?(contact_path) %>"><%= link_to "联系",contact_path %></li>
       <li class="<%= 'active' if current_page?('/signin') %>"><%= link_to "登录","/signin"%></li>
